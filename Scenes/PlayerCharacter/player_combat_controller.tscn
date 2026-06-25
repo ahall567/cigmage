@@ -1,13 +1,15 @@
 [gd_scene format=3 uid="uid://bmm3keg2toae8"]
 
 [ext_resource type="PackedScene" uid="uid://tsvcgwcv3yx1" path="res://Assets/Arms/PSX_First_Person_Arms.glb" id="1_gyte1"]
+[ext_resource type="PackedScene" uid="uid://b7ty6hjewlyyo" path="res://Scenes/fireball.tscn" id="2_62cid"]
 [ext_resource type="Script" uid="uid://bumk1xf16apsp" path="res://Scripts/Combat/PlayerCombat/StateMachine/PlayerCombatStateMachine.cs" id="2_gp34t"]
 [ext_resource type="Script" uid="uid://strq8n4iglmv" path="res://Scripts/Combat/PlayerCombat/StateMachine/PlayerCombatStateCast.cs" id="3_xpbl0"]
 [ext_resource type="Script" uid="uid://cxgpsmcidwjct" path="res://Scripts/Combat/PlayerCombat/StateMachine/PlayerCombatStateDrag.cs" id="4_38n50"]
 [ext_resource type="Script" uid="uid://bhpfc4pbvd41r" path="res://Scripts/Combat/PlayerCombat/StateMachine/PlayerCombatStateIdle.cs" id="5_62cid"]
 
-[node name="PlayerCombatController" unique_id=977804158 node_paths=PackedStringArray("Spell", "Cig") instance=ExtResource("1_gyte1")]
-Spell = NodePath("Spell")
+[node name="PlayerCombatController" unique_id=977804158 node_paths=PackedStringArray("_spellSpawnPoint", "Cig") instance=ExtResource("1_gyte1")]
+_spellSpawnPoint = NodePath("SpellSpawnPoint")
+SpellPrefab = ExtResource("2_62cid")
 Cig = NodePath("Cig")
 
 [node name="Skeleton3D" parent="arms_armature" parent_id_path=PackedInt32Array(756380421) index="0" unique_id=1176842489]
@@ -76,10 +78,8 @@ bones/47/rotation = Quaternion(0.28241175, 0.03793041, -0.0058975033, 0.958525)
 bones/48/rotation = Quaternion(0.17191815, 0.0066784676, 0.0116130235, 0.98502016)
 bones/49/rotation = Quaternion(0.039439734, 0.01483756, -0.024118492, 0.99882066)
 
-[node name="Spell" type="Label3D" parent="." index="2" unique_id=1750151277]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.2240023, 1.6412481, 0.6668903)
-visible = false
-text = "CASTING"
+[node name="SpellSpawnPoint" type="Marker3D" parent="." index="2" unique_id=348940900]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22632441, 1.6398431, 0.65548575)
 
 [node name="Cig" type="Label3D" parent="." index="3" unique_id=1027686205]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.23389989, 1.6593163, 0.78639627)
@@ -91,17 +91,20 @@ script = ExtResource("2_gp34t")
 Parent = NodePath("..")
 metadata/_custom_type_script = "uid://bumk1xf16apsp"
 
-[node name="PlayerCombatStateCast" type="Node" parent="PlayerCombatStateMachine" index="0" unique_id=455665899 node_paths=PackedStringArray("Parent")]
-script = ExtResource("3_xpbl0")
-Parent = NodePath("../..")
-metadata/_custom_type_script = "uid://strq8n4iglmv"
-
-[node name="PlayerCombatStateDrag" type="Node" parent="PlayerCombatStateMachine" index="1" unique_id=814898436 node_paths=PackedStringArray("Parent")]
-script = ExtResource("4_38n50")
-Parent = NodePath("../..")
-metadata/_custom_type_script = "uid://cxgpsmcidwjct"
-
-[node name="PlayerCombatStateIdle" type="Node" parent="PlayerCombatStateMachine" index="2" unique_id=258278736 node_paths=PackedStringArray("Parent")]
+[node name="PlayerCombatStateIdle" type="Node" parent="PlayerCombatStateMachine" index="0" unique_id=258278736 node_paths=PackedStringArray("Parent")]
 script = ExtResource("5_62cid")
 Parent = NodePath("../..")
 metadata/_custom_type_script = "uid://bhpfc4pbvd41r"
+
+[node name="PlayerCombatStateDrag" type="Node" parent="PlayerCombatStateMachine" index="1" unique_id=814898436 node_paths=PackedStringArray("Parent")]
+script = ExtResource("4_38n50")
+_refillRate = 1.0
+Parent = NodePath("../..")
+metadata/_custom_type_script = "uid://cxgpsmcidwjct"
+
+[node name="PlayerCombatStateCast" type="Node" parent="PlayerCombatStateMachine" index="2" unique_id=455665899 node_paths=PackedStringArray("Parent")]
+script = ExtResource("3_xpbl0")
+_cooldownTime = 0.25
+_manaCost = 10.0
+Parent = NodePath("../..")
+metadata/_custom_type_script = "uid://strq8n4iglmv"

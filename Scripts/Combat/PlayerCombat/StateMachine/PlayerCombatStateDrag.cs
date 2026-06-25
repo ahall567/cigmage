@@ -7,10 +7,18 @@ public partial class PlayerCombatStateDrag : PlayerCombatStateBase
 {
     public override PlayerCombatState StateKey => PlayerCombatState.Drag;
 
+    [Export] private float _refillRate = 5;
+
     public override void Enter()
     {
         base.Enter();
         PlayerCombatControllerParent.Cig.Visible = true;
+    }
+
+    public override void Update(double delta)
+    {
+        PlayerCombatControllerParent.CurrentMana += _refillRate;
+        GD.Print($"CurrentMana: {PlayerCombatControllerParent.CurrentMana}");
     }
 
     public override void HandleInput(InputEvent @event)

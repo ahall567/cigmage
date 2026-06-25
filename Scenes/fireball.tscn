@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://b7ty6hjewlyyo"]
+
+[ext_resource type="Script" uid="uid://dspbfqsl0l1u6" path="res://Scripts/Spells/Fireball/Fireball.cs" id="1_xi7wk"]
+
+[sub_resource type="Curve3D" id="Curve3D_xi7wk"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_toovh"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_xi7wk"]
+
+[node name="SpellObject" type="Path3D" unique_id=951743044 node_paths=PackedStringArray("_explosionMarker", "_pathFollow")]
+curve = SubResource("Curve3D_xi7wk")
+script = ExtResource("1_xi7wk")
+MovementSpeed = 10.0
+_explosionMarker = NodePath("PathFollow3D/Label3D")
+_pathFollow = NodePath("PathFollow3D")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="." unique_id=892561097]
+transform = Transform3D(-0.99999696, 0, -8.742257e-08, 0, 0.9999959, 0, 8.7422514e-08, 0, -0.9999976, 0, 0, 0)
+
+[node name="Label3D" type="Label3D" parent="PathFollow3D" unique_id=985847513]
+transform = Transform3D(-1.000003, 0, 8.742304e-08, 0, 1.000004, 0, -8.742298e-08, 0, -1.0000024, 2.9048103e-08, 0, -0.33227137)
+visible = false
+text = "EXPLOSION"
+
+[node name="Area3D" type="Area3D" parent="PathFollow3D" unique_id=2013344966]
+transform = Transform3D(-1.000003, 0, 8.742304e-08, 0, 1.000004, 0, -8.742298e-08, 0, -1.0000024, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PathFollow3D/Area3D" unique_id=1151721130]
+transform = Transform3D(0.645, 0, 0, 0, 0.645, 0, 0, 0, 0.645, 0, 0, 0)
+shape = SubResource("SphereShape3D_toovh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFollow3D" unique_id=1185020689]
+transform = Transform3D(-0.61500186, 0, 5.376517e-08, 0, 0.6150025, 0, -5.3765135e-08, 0, -0.6150015, 0, 0, 0)
+mesh = SubResource("SphereMesh_xi7wk")
