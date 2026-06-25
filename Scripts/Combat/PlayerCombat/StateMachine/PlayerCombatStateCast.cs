@@ -40,18 +40,17 @@ public partial class PlayerCombatStateCast : PlayerCombatStateBase
     public override void Update(double delta)
     {
         base.Update(delta);
+        
         if (_canFire)
         {
-            PlayerCombatControllerParent.SpawnSpell();
+            bool spellSpawned = PlayerCombatControllerParent.SpawnSpell(_manaCost);
             _canFire = false;
             _castCooldown.Start();
-            PlayerCombatControllerParent.CurrentMana -= _manaCost;
-            GD.Print($"Current Mana: {PlayerCombatControllerParent.CurrentMana}");
-        }
 
-        if (PlayerCombatControllerParent.CurrentMana < _manaCost)
-        {
-            StateMachine.ChangeState(PlayerCombatState.Idle);
+            if (!spellSpawned)
+            {
+                StateMachine.ChangeState(PlayerCombatState.Idle);
+            }
         }
     }
 

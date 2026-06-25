@@ -10,7 +10,7 @@ public partial class PlayerCombatStateIdle : PlayerCombatStateBase
     public override void HandleInput(InputEvent @event)
     {
         base.HandleInput(@event);
-        if (@event.IsActionPressed("primary_fire") && PlayerCombatControllerParent.CurrentMana >= 10f)
+        if (@event.IsActionPressed("primary_fire"))
         {
             StateMachine.ChangeState(PlayerCombatState.Cast);
         }

@@ -7,29 +7,47 @@ namespace FpsTest.Combat.PlayerCombat;
 public partial class PlayerCombatController : Node3D
 {
     public AnimationPlayer Animator;
+    private ManaComponent _manaComponent;
     [Export] private Marker3D _spellSpawnPoint;
     [Export] public PackedScene SpellPrefab;
     [Export] public Label3D Cig;
-    [Export] public float ManaMaximum = 100;
-    public float CurrentMana;
     
+    // --- GODOT OVERRIDES ---
     public override void _Ready()
     {
         Cig = GetNode<Label3D>("Cig");
         Animator = this.GetChildByType<AnimationPlayer>();
+        _manaComponent = this.GetChildByType<ManaComponent>();
         Animator.Play("Relax_hands_idle");
-        CurrentMana = ManaMaximum;
     }
 
-    public void SpawnSpell()
+    // --- PUBLIC API ---
+    
+    public bool SpawnSpell(float manaCost)
     {
-        Node objectNode = SpellPrefab.Instantiate();
-        if (objectNode is Node3D node3D)
+        if (manaCost >= _manaComponent.CurrentValue)
         {
-            node3D.GlobalTransform = _spellSpawnPoint.GlobalTransform;
+            return false;
         }
+        else
+        {
+            Node objectNode = SpellPrefab.Instantiate();
+            if (objectNode is Node3D node3D)
+            {
+                node3D.GlobalTransform = _spellSpawnPoint.GlobalTransform;
+            }
         
-        GetTree().CurrentScene.AddChild(objectNode);
+            GetTree().CurrentScene.AddChild(objectNode);
+            
+            _manaComponent.Decrease(manaCost);
+            
+            return true;
+        }
+    }
+
+    public void RegenMana(float amount)
+    {
+        _manaComponent.Increase(amount);
     }
     
 }

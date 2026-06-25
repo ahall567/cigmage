@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://strq8n4iglmv" path="res://Scripts/Combat/PlayerCombat/StateMachine/PlayerCombatStateCast.cs" id="3_xpbl0"]
 [ext_resource type="Script" uid="uid://cxgpsmcidwjct" path="res://Scripts/Combat/PlayerCombat/StateMachine/PlayerCombatStateDrag.cs" id="4_38n50"]
 [ext_resource type="Script" uid="uid://bhpfc4pbvd41r" path="res://Scripts/Combat/PlayerCombat/StateMachine/PlayerCombatStateIdle.cs" id="5_62cid"]
+[ext_resource type="Script" uid="uid://bu00kmn45x8xm" path="res://Scripts/Combat/PlayerCombat/ManaComponent.cs" id="7_8b4i8"]
 
 [node name="PlayerCombatController" unique_id=977804158 node_paths=PackedStringArray("_spellSpawnPoint", "Cig") instance=ExtResource("1_gyte1")]
 _spellSpawnPoint = NodePath("SpellSpawnPoint")
@@ -98,7 +99,7 @@ metadata/_custom_type_script = "uid://bhpfc4pbvd41r"
 
 [node name="PlayerCombatStateDrag" type="Node" parent="PlayerCombatStateMachine" index="1" unique_id=814898436 node_paths=PackedStringArray("Parent")]
 script = ExtResource("4_38n50")
-_refillRate = 1.0
+_refillRate = 10.0
 Parent = NodePath("../..")
 metadata/_custom_type_script = "uid://cxgpsmcidwjct"
 
@@ -108,3 +109,8 @@ _cooldownTime = 0.25
 _manaCost = 10.0
 Parent = NodePath("../..")
 metadata/_custom_type_script = "uid://strq8n4iglmv"
+
+[node name="ManaComponent" type="Node" parent="." index="5" unique_id=1099135381]
+script = ExtResource("7_8b4i8")
+_maximumValue = 100.0
+metadata/_custom_type_script = "uid://bu00kmn45x8xm"
