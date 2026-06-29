@@ -1,6 +1,6 @@
 using Godot;
 
-namespace FpsTest.Combat.PlayerCombat.StateMachine;
+namespace CigMage.Combat.PlayerCombat.StateMachine;
 
 [GlobalClass]
 public partial class PlayerCombatStateIdle : PlayerCombatStateBase

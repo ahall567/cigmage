@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-namespace FpsTest.StateMachine;
+namespace CigMage.StateMachine;
 
 /// <summary>
 /// Abstract base class for all states managed by a <see cref="StateMachine{T}"/>.

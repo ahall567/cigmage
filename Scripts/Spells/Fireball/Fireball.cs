@@ -1,7 +1,7 @@
 using Godot;
-using FpsTest.Extensions;
+using CigMage.Extensions;
 
-namespace FpsTest.Spells;
+namespace CigMage.Spells;
 
 public partial class Fireball : Path3D
 {

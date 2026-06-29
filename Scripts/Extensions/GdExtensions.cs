@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Godot;
 
-namespace FpsTest.Extensions;
+namespace CigMage.Extensions;
 
 public static class GdExtensions
 {

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-namespace FpsTest.Combat.PlayerCombat;
+namespace CigMage.Combat.PlayerCombat;
 
 [GlobalClass]
 public partial class ManaComponent : Node

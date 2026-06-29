@@ -1,9 +1,9 @@
 ﻿using Godot;
 using System;
 using System.Collections.Generic;
-using FpsTest.Extensions;
+using CigMage.Extensions;
 
-namespace FpsTest.StateMachine;
+namespace CigMage.StateMachine;
 
 /// <summary>
 /// A generic, reusable state machine that manages a set of <see cref="State{T}"/> nodes

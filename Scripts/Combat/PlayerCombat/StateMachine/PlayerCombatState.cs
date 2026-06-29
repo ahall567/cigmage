@@ -1,4 +1,4 @@
-namespace FpsTest.Combat.PlayerCombat.StateMachine;
+namespace CigMage.Combat.PlayerCombat.StateMachine;
 
 public enum PlayerCombatState
 {

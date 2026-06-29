@@ -1,7 +1,7 @@
 using Godot;
-using FpsTest.Extensions;
+using CigMage.Extensions;
 
-namespace FpsTest.PlayerCharacter;
+namespace CigMage.PlayerCharacter;
 
 public partial class PlayerHead : Node3D
 {

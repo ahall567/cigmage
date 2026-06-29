@@ -1,7 +1,7 @@
+using CigMage.StateMachine;
 using Godot;
-using FpsTest.StateMachine;
 
-namespace FpsTest.Combat.PlayerCombat.StateMachine;
+namespace CigMage.Combat.PlayerCombat.StateMachine;
 
 [GlobalClass]
 public partial class PlayerCombatStateMachine : StateMachine<PlayerCombatState>

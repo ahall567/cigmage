@@ -1,7 +1,7 @@
 using Godot;
-using FpsTest.Extensions;
+using CigMage.Extensions;
 
-namespace FpsTest.Combat.PlayerCombat;
+namespace CigMage.Combat.PlayerCombat;
 
 [GlobalClass]
 public partial class PlayerCombatController : Node3D
