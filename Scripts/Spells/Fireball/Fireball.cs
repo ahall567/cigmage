@@ -1,25 +1,28 @@
 using Godot;
-using CigMage.Extensions;
 
 namespace CigMage.Spells;
 
-public partial class Fireball : Path3D
+public partial class Fireball : RigidBody3D
 {
-	[Export] public float MovementSpeed = 100;
-	[Export] private PathFollow3D _pathFollow;
+	[Export] public float ForceAmount = 30;
 
+	// --- GODOT OVERRIDES ---
 	public override void _Ready()
 	{
-		_pathFollow = this.GetChildByType<PathFollow3D>();
+		Launch();
 	}
 
-	public override void _PhysicsProcess(double delta)
+	// --- PUBLIC API ---
+	public void Launch()
 	{
-		_pathFollow.Progress += (float)delta * MovementSpeed;
+		ApplyCentralImpulse(GlobalTransform.Basis.Z.Normalized() * 20f);
+	}
 
-		if (_pathFollow.ProgressRatio >= 0.99f)
-		{
-			QueueFree();
-		}
+	// --- EVENT HANDLERS ---
+	public void OnBodyEntered(Node body)
+	{
+		GD.Print($"Fireball: OnBodyEntered Called");
+		QueueFree();
+		// TODO: Add explosion logic here
 	}
 }
