@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://br6su254b20v"]
+
+[ext_resource type="Script" uid="uid://d0s8gukj1746v" path="res://Scripts/Combat/Hurtbox.cs" id="1_h5js2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_04bb1"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_h5js2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u8nqw"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h5js2"]
+
+[node name="Mob" type="CharacterBody3D" unique_id=69695702]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1493214985]
+shape = SubResource("CapsuleShape3D_04bb1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=358094108]
+mesh = SubResource("CapsuleMesh_h5js2")
+surface_material_override/0 = SubResource("StandardMaterial3D_u8nqw")
+
+[node name="Label3D" type="Label3D" parent="MeshInstance3D" unique_id=1011482105]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.51066315)
+text = "MOB"
+
+[node name="Hurtbox" type="Area3D" parent="." unique_id=1416389272]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.51066315)
+script = ExtResource("1_h5js2")
+metadata/_custom_type_script = "uid://d0s8gukj1746v"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=347461576]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5108836)
+shape = SubResource("CapsuleShape3D_h5js2")
