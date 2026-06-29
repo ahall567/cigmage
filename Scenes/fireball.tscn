@@ -3,14 +3,19 @@
 [ext_resource type="Script" uid="uid://dspbfqsl0l1u6" path="res://Scripts/Spells/Fireball/Fireball.cs" id="1_xi7wk"]
 [ext_resource type="Script" uid="uid://cmcy30iuevh6v" path="res://Scripts/Combat/Hitbox.cs" id="2_0mxqg"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0mxqg"]
+
 [sub_resource type="SphereMesh" id="SphereMesh_xi7wk"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_toovh"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0mxqg"]
-radius = 0.3595625
+radius = 0.31341848
 
 [node name="SpellObject" type="RigidBody3D" unique_id=1241494251]
+physics_material_override = SubResource("PhysicsMaterial_0mxqg")
+contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_xi7wk")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1185020689]
@@ -28,3 +33,5 @@ debug_color = Color(0.699475, 0.0435972, 2.8878452e-07, 0.41960785)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=482641591]
 shape = SubResource("SphereShape3D_0mxqg")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://dg71jl6uuwxj6" path="res://Scenes/PlayerCharacter/player.tscn" id="5_5ukr8"]
 [ext_resource type="PackedScene" uid="uid://dy4xwfb4na8rk" path="res://Assets/Environment/stairs_wood.gltf" id="5_fo5ed"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5ukr8"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5a7ea"]
 albedo_color = Color(1, 1, 1, 0)
 albedo_texture = ExtResource("1_go701")
@@ -27,6 +29,7 @@ albedo_texture = ExtResource("4_8j60k")
 points = PackedVector3Array(-1.65, 0.01058352, 0.40823475, -1.5069978, 0.52418256, 6.046426, 1.65, 0.051234186, 0.45994952, 1.5, 0.007740767, 5.780646, 1.5402567, 4.142857, 1.0005686, -1.4394733, 4.0499997, 0.088003255, 1.5402567, 3.3807287, -0.047022343, -1.5069978, 4.142857, 1.0005686, 1.5402567, 0.52418256, 6.046426, -1.6419697, 0.020398581, 4.6580305, 1.730878, 3.5710557, 0.5244994, -1.5069978, 3.3807287, -0.047022343, -1.47237, 0, 5.7911987, 1.65, 0.051234186, 4.632806, 1.4727322, 4.0499997, 0.088003255, 1.5402567, 1.0955738, 5.2845955, -1.5069978, 1.5718015, 4.618218, -1.4837809, 0.26585242, 6, 1.730878, 3.5710557, 0.33419108, 1.730878, 3.475482, 0.7154043, 1.5, 0.2860875, 5.965926, -1.5069978, 1.0955738, 5.2845955, 1.3499712, 1.5718015, 4.618218)
 
 [node name="World" type="GridMap" unique_id=1968420319]
+physics_material = SubResource("PhysicsMaterial_5ukr8")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1937627573]
 use_collision = true

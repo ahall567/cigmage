@@ -15,13 +15,12 @@ public partial class Fireball : RigidBody3D
 	// --- PUBLIC API ---
 	public void Launch()
 	{
-		ApplyCentralImpulse(GlobalTransform.Basis.Z.Normalized() * 20f);
+		ApplyCentralImpulse(GlobalTransform.Basis.Z.Normalized() * ForceAmount);
 	}
 
 	// --- EVENT HANDLERS ---
 	public void OnBodyEntered(Node body)
 	{
-		GD.Print($"Fireball: OnBodyEntered Called");
 		QueueFree();
 		// TODO: Add explosion logic here
 	}
