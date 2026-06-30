@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b8u2entb8ru6j"]
+
+[ext_resource type="Script" uid="uid://b51qyd0lwgha4" path="res://Scripts/Spells/SpellBase.cs" id="1_223v7"]
+[ext_resource type="PackedScene" uid="uid://b7ty6hjewlyyo" path="res://Scenes/Spells/fireball_projectile.tscn" id="2_io216"]
+
+[node name="SpellBase" type="Node3D" unique_id=669143144]
+script = ExtResource("1_223v7")
+_spellPrefab = ExtResource("2_io216")
