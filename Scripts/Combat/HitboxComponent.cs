@@ -2,27 +2,27 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-namespace FpsTest.Combat;
+namespace CigMage.Combat;
 
 [GlobalClass]
-public partial class Hitbox : Area3D
+public partial class HitboxComponent : Area3D
 {
     private bool _isActive;
     
     // --- EVENTS ---
-    public event Action<List<Hurtbox>> HurtboxDetected;
+    public event Action<List<HurtboxComponent>> HurtboxDetected;
     
     // --- PUBLIC API ---
     public void SetActive(bool active) => _isActive = active;
 
     public void GetHurtboxes()
     {
-        List<Hurtbox> hurtboxes = new();
+        List<HurtboxComponent> hurtboxes = new();
         Godot.Collections.Array<Area3D> overlappingAreas = GetOverlappingAreas();
 
         foreach (Area3D area in overlappingAreas)
         {
-            if (area is Hurtbox hurtbox) hurtboxes.Add(hurtbox);
+            if (area is HurtboxComponent hurtbox) hurtboxes.Add(hurtbox);
         }
 
         if (hurtboxes.Count > 0 && _isActive)

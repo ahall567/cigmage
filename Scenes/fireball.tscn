@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b7ty6hjewlyyo"]
 
 [ext_resource type="Script" uid="uid://dspbfqsl0l1u6" path="res://Scripts/Spells/Fireball/Fireball.cs" id="1_xi7wk"]
-[ext_resource type="Script" uid="uid://cmcy30iuevh6v" path="res://Scripts/Combat/Hitbox.cs" id="2_0mxqg"]
+[ext_resource type="Script" uid="uid://cmcy30iuevh6v" path="res://Scripts/Combat/HitboxComponent.cs" id="2_0mxqg"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0mxqg"]
 

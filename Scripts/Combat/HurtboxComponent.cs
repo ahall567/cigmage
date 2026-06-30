@@ -1,10 +1,10 @@
 using Godot;
 using System;
 
-namespace FpsTest.Combat;
+namespace CigMage.Combat;
 
 [GlobalClass]
-public partial class Hurtbox : Area3D
+public partial class HurtboxComponent : Area3D
 {
     private bool _isActive;
     

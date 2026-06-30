@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://br6su254b20v"]
 
-[ext_resource type="Script" uid="uid://d0s8gukj1746v" path="res://Scripts/Combat/Hurtbox.cs" id="1_h5js2"]
+[ext_resource type="Script" uid="uid://bdl15hgmpvkub" path="res://Scripts/Combat/CombatHandler.cs" id="1_b44se"]
+[ext_resource type="Script" uid="uid://d0s8gukj1746v" path="res://Scripts/Combat/HurtboxComponent.cs" id="1_h5js2"]
+[ext_resource type="Script" uid="uid://cx7f3msraa047" path="res://Scripts/Combat/HealthComponent.cs" id="2_u8nqw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_04bb1"]
 
@@ -24,11 +26,20 @@ surface_material_override/0 = SubResource("StandardMaterial3D_u8nqw")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.51066315)
 text = "MOB"
 
-[node name="Hurtbox" type="Area3D" parent="." unique_id=1416389272]
+[node name="CombatHandler" type="Node" parent="." unique_id=1612105434]
+script = ExtResource("1_b44se")
+metadata/_custom_type_script = "uid://bdl15hgmpvkub"
+
+[node name="HealthComponent" type="Node" parent="CombatHandler" unique_id=1693394613]
+script = ExtResource("2_u8nqw")
+_maxHealth = 10.0
+metadata/_custom_type_script = "uid://cx7f3msraa047"
+
+[node name="Hurtbox" type="Area3D" parent="CombatHandler" unique_id=1416389272]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.51066315)
 script = ExtResource("1_h5js2")
 metadata/_custom_type_script = "uid://d0s8gukj1746v"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=347461576]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CombatHandler/Hurtbox" unique_id=347461576]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5108836)
 shape = SubResource("CapsuleShape3D_h5js2")
