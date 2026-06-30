@@ -13,7 +13,7 @@ _spellSpawnPoint = NodePath("SpellSpawnPoint")
 SpellPrefab = ExtResource("2_62cid")
 Cig = NodePath("Cig")
 
-[node name="Skeleton3D" parent="arms_armature" parent_id_path=PackedInt32Array(756380421) index="0" unique_id=1176842489]
+[node name="Skeleton3D" parent="arms_armature" parent_id_path=PackedInt32Array(98773093) index="0" unique_id=581432001]
 bones/2/rotation = Quaternion(-0.60515463, -0.3458624, -0.35613444, 0.6223627)
 bones/3/rotation = Quaternion(0.23867574, 0.6074137, -0.7266488, 0.21462561)
 bones/4/rotation = Quaternion(0.030155214, 0.1958514, 0.83107364, 0.519663)
