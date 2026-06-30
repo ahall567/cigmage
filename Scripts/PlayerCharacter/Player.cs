@@ -8,6 +8,8 @@ public partial class Player : CharacterBody3D
 	public const float Speed = 5.0f;
 	public const float JumpVelocity = 4.5f;
 
+	private float _acceleration = 0.5f;
+
 	private PlayerHead _head;
 	
 	public override void _Ready()
@@ -48,14 +50,14 @@ public partial class Player : CharacterBody3D
 		Vector3 direction = (_head.GlobalTransform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
 		if (direction != Vector3.Zero)
 		{
-			velocity.X = direction.X * Speed;
-			velocity.Z = direction.Z * Speed;
+			velocity.X = Mathf.MoveToward(Velocity.X, direction.X * Speed, _acceleration);
+			velocity.Z = Mathf.MoveToward(Velocity.Z, direction.Z * Speed, _acceleration);
 		}
 		else
 		{
 			// Use MoveToward to slow down instead of immediately stopping
-			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
-			velocity.Z = Mathf.MoveToward(Velocity.Z, 0, Speed);
+			velocity.X = Mathf.MoveToward(Velocity.X, 0, _acceleration);
+			velocity.Z = Mathf.MoveToward(Velocity.Z, 0, _acceleration);
 		}
 
 		Velocity = velocity;
