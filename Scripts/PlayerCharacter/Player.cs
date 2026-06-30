@@ -5,9 +5,8 @@ namespace CigMage.PlayerCharacter;
 
 public partial class Player : CharacterBody3D
 {
-	public const float Speed = 5.0f;
-	public const float JumpVelocity = 4.5f;
-
+	private float _speed = 5.0f;
+	private float _jumpVelocity = 4.5f;
 	private float _acceleration = 0.5f;
 
 	private PlayerHead _head;
@@ -18,10 +17,10 @@ public partial class Player : CharacterBody3D
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 	}
 
-	public override void _Input(InputEvent @event)
+	public override void _UnhandledInput(InputEvent @event)
 	{
 		// Show the mouse when escape is pressed.
-		if (@event is InputEventKey k && k.Keycode == Key.Escape)
+		if (@event is InputEventKey { Keycode: Key.Escape })
 		{
 			Input.MouseMode = Input.MouseModeEnum.Visible;
 		}
@@ -40,7 +39,7 @@ public partial class Player : CharacterBody3D
 		// Handle Jump.
 		if (Input.IsActionJustPressed("jump") && IsOnFloor())
 		{
-			velocity.Y = JumpVelocity;
+			velocity.Y = _jumpVelocity;
 		}
 
 		// Get the input direction and handle the movement/deceleration.
@@ -50,8 +49,8 @@ public partial class Player : CharacterBody3D
 		Vector3 direction = (_head.GlobalTransform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
 		if (direction != Vector3.Zero)
 		{
-			velocity.X = Mathf.MoveToward(Velocity.X, direction.X * Speed, _acceleration);
-			velocity.Z = Mathf.MoveToward(Velocity.Z, direction.Z * Speed, _acceleration);
+			velocity.X = Mathf.MoveToward(Velocity.X, direction.X * _speed, _acceleration);
+			velocity.Z = Mathf.MoveToward(Velocity.Z, direction.Z * _speed, _acceleration);
 		}
 		else
 		{
