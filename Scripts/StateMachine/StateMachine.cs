@@ -34,7 +34,6 @@ public partial class StateMachine<T> : Node where T: Enum
     public State<T> CurrentState => _currentState;
 
     // --- GODOT OVERRIDES ---
-    
     /// <summary>
     /// Discovers all child <see cref="State{T}"/> nodes, initializes them,
     /// registers them in the state dictionary, and enters the initial state.
@@ -53,8 +52,8 @@ public partial class StateMachine<T> : Node where T: Enum
         _currentState = _states[InitialState];
         _currentState.Enter();
     }
-
-    public override void _Input(InputEvent @event)
+    
+    public override void _UnhandledInput(InputEvent @event)
     {
         _currentState.HandleInput(@event);
     }

@@ -1,3 +1,4 @@
+using CigMage.Spells.SpellStateMachine;
 using Godot;
 
 namespace CigMage.Combat.PlayerCombat.StateMachine;
@@ -17,6 +18,9 @@ public partial class PlayerCombatStateCast : PlayerCombatStateBase
     public override void _Ready()
     {
         base._Ready();
+        
+        SpellStateMachine.ChangeState(SpellState.Charge);
+        
         _castCooldown = new Timer();
         _castCooldown.WaitTime = _cooldownTime;
         _castCooldown.OneShot = true;
@@ -35,23 +39,6 @@ public partial class PlayerCombatStateCast : PlayerCombatStateBase
     {
         base.Enter();
         PlayerCombatControllerParent.Animator.Play("Magic_spell");
-    }
-
-    public override void Update(double delta)
-    {
-        base.Update(delta);
-        
-        if (_canFire)
-        {
-            bool spellSpawned = PlayerCombatControllerParent.SpawnSpell(_manaCost);
-            _canFire = false;
-            _castCooldown.Start();
-
-            if (!spellSpawned)
-            {
-                StateMachine.ChangeState(PlayerCombatState.Idle);
-            }
-        }
     }
 
     public override void HandleInput(InputEvent @event)

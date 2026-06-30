@@ -2,7 +2,38 @@
 
 [ext_resource type="Script" uid="uid://b51qyd0lwgha4" path="res://Scripts/Spells/SpellBase.cs" id="1_223v7"]
 [ext_resource type="PackedScene" uid="uid://b7ty6hjewlyyo" path="res://Scenes/Spells/fireball_projectile.tscn" id="2_io216"]
+[ext_resource type="Script" uid="uid://bnvechw3byfbs" path="res://Scripts/Spells/SpellStateMachine/SpellStateMachine.cs" id="3_62q1a"]
+[ext_resource type="Script" uid="uid://b5kx6lu7s7tkl" path="res://Scripts/Spells/SpellStateMachine/SpellStateIdle.cs" id="4_juxrv"]
+[ext_resource type="Script" uid="uid://dqvxcyn4y0xc3" path="res://Scripts/Spells/SpellStateMachine/SpellStateCharge.cs" id="5_7ldmh"]
+[ext_resource type="Script" uid="uid://dmnb7esl3wdy0" path="res://Scripts/Spells/SpellStateMachine/SpellStateCast.cs" id="6_v6oc2"]
+[ext_resource type="Script" uid="uid://b2lc0n6luj72" path="res://Scripts/Spells/SpellStateMachine/SpellStateRecover.cs" id="7_h4kpx"]
 
 [node name="SpellBase" type="Node3D" unique_id=669143144]
 script = ExtResource("1_223v7")
 _spellPrefab = ExtResource("2_io216")
+ManaCost = 10.0
+ChargeTime = 1.0
+
+[node name="SpellStateMachine" type="Node" parent="." unique_id=1823067156 node_paths=PackedStringArray("Parent")]
+script = ExtResource("3_62q1a")
+Parent = NodePath("..")
+metadata/_custom_type_script = "uid://bnvechw3byfbs"
+
+[node name="SpellStateIdle" type="Node" parent="SpellStateMachine" unique_id=1410030934 node_paths=PackedStringArray("Parent")]
+script = ExtResource("4_juxrv")
+Parent = NodePath("../..")
+metadata/_custom_type_script = "uid://b5kx6lu7s7tkl"
+
+[node name="SpellStateCharge" type="Node" parent="SpellStateMachine" unique_id=1370411068]
+script = ExtResource("5_7ldmh")
+metadata/_custom_type_script = "uid://dqvxcyn4y0xc3"
+
+[node name="SpellStateCast" type="Node" parent="SpellStateMachine" unique_id=1305558317]
+script = ExtResource("6_v6oc2")
+metadata/_custom_type_script = "uid://dmnb7esl3wdy0"
+
+[node name="SpellStateRecover" type="Node" parent="SpellStateMachine" unique_id=972621978]
+script = ExtResource("7_h4kpx")
+metadata/_custom_type_script = "uid://b2lc0n6luj72"
+
+[node name="StateLabel" type="Label3D" parent="." unique_id=1301236527]
