@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bmm3keg2toae8"]
 
 [ext_resource type="PackedScene" uid="uid://tsvcgwcv3yx1" path="res://Assets/Arms/PSX_First_Person_Arms.glb" id="1_gyte1"]
-[ext_resource type="PackedScene" uid="uid://b7ty6hjewlyyo" path="res://Scenes/fireball.tscn" id="2_62cid"]
+[ext_resource type="PackedScene" uid="uid://b7ty6hjewlyyo" path="res://Scenes/fireball_projectile.tscn" id="2_62cid"]
 [ext_resource type="Script" uid="uid://bumk1xf16apsp" path="res://Scripts/Combat/PlayerCombat/StateMachine/PlayerCombatStateMachine.cs" id="2_gp34t"]
 [ext_resource type="Script" uid="uid://strq8n4iglmv" path="res://Scripts/Combat/PlayerCombat/StateMachine/PlayerCombatStateCast.cs" id="3_xpbl0"]
 [ext_resource type="Script" uid="uid://cxgpsmcidwjct" path="res://Scripts/Combat/PlayerCombat/StateMachine/PlayerCombatStateDrag.cs" id="4_38n50"]
