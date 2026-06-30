@@ -12,6 +12,8 @@
 albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h5js2"]
+radius = 0.53027344
+height = 2.0429688
 
 [node name="Mob" type="CharacterBody3D" unique_id=69695702]
 
@@ -41,5 +43,5 @@ script = ExtResource("1_h5js2")
 metadata/_custom_type_script = "uid://d0s8gukj1746v"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CombatHandler/Hurtbox" unique_id=347461576]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5108836)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.021484375, -0.5108836)
 shape = SubResource("CapsuleShape3D_h5js2")

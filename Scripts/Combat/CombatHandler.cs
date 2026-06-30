@@ -70,7 +70,7 @@ public partial class CombatHandler : Node
 
     private CombatPayload BuildPayload()
     {
-        return new CombatPayload();
+        return new CombatPayload(5, 5, Vector3.Zero);
     }
     
     // --- EVENT HANDLERS ---
@@ -87,6 +87,7 @@ public partial class CombatHandler : Node
         if (payload.DamageAmount > 0)
         {
             DamageTaken?.Invoke(payload.DamageAmount);
+            GD.Print($"CombatHandler - Damage Taken: {payload.DamageAmount}");
             
             _health.Decrease(payload.DamageAmount);
         }
