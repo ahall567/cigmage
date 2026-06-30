@@ -21,7 +21,7 @@ window/size/initial_position_type=4
 
 [dotnet]
 
-project/assembly_name="FPSTest"
+project/assembly_name="CigMage"
 
 [editor_plugins]
 

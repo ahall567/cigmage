@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/PSX_First_Person_Arms.glb-8de86c81ce61b706fd3
 
 nodes/root_type="res://Scripts/Combat/PlayerCombatController/PlayerCombatController.cs"
 nodes/root_name="PlayerCombatController"
-nodes/root_script=Resource("uid://bh2m77wqd8nqi", "res://Scripts/Combat/PlayerCombatController/PlayerCombatController.cs")
+nodes/root_script=Resource("uid://bh2m77wqd8nqi", "res://Scripts/Combat/PlayerCombat/PlayerCombatController.cs")
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
