@@ -32,7 +32,6 @@ public partial class ProjectileEntity : RigidBody3D
 	// --- EVENT HANDLERS ---
 	public void OnBodyEntered(Node body)
 	{
-		GD.Print($"ProjectileEntity - OnBodyEntered called");
 		ActivateAttack();
 		QueueFree();
 	}

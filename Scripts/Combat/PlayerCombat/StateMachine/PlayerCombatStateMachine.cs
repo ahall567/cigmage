@@ -11,7 +11,6 @@ public partial class PlayerCombatStateMachine : StateMachine<PlayerCombatState>
     public override void _Ready()
     {
         InitialState = _initialState;
-        GD.Print($"PlayerCombatStateMachine - Initial State: {InitialState}");
         base._Ready();
     }
 }

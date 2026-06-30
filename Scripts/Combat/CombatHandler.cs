@@ -17,6 +17,8 @@ public partial class CombatHandler : Node
     public event Action<float> DamageTaken;
     public event Action<float> KnockbackTaken;
     public event Action<CombatPayload> PayloadHandled;
+    // TODO: Put this in global event bus
+    public event Action HealthZero;
     
     // --- STATUS ---
     private bool _isAttacking;
@@ -60,12 +62,14 @@ public partial class CombatHandler : Node
     {
         if (_hitbox != null) _hitbox.HurtboxDetected += OnHurtboxDetected;
         if (_hurtbox != null) _hurtbox.PayloadAccepted += OnPayloadAccepted;
+        if (_health != null) _health.HealthZero += OnHealthZero;
     }
 
     private void UnsubscribeFromEvents()
     {
         if (_hitbox != null) _hitbox.HurtboxDetected -= OnHurtboxDetected;
         if (_hurtbox != null) _hurtbox.PayloadAccepted -= OnPayloadAccepted;
+        if (_health != null) _health.HealthZero -= OnHealthZero;
     }
 
     private CombatPayload BuildPayload()
@@ -100,5 +104,11 @@ public partial class CombatHandler : Node
         // Logic for sending status effects
         
         PayloadHandled?.Invoke(payload);
+    }
+
+    private void OnHealthZero()
+    {
+        GD.Print($"CombatHandler - OnHealthZero called");
+        HealthZero?.Invoke();
     }
 }

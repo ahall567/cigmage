@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bdl15hgmpvkub" path="res://Scripts/Combat/CombatHandler.cs" id="1_b44se"]
 [ext_resource type="Script" uid="uid://d0s8gukj1746v" path="res://Scripts/Combat/HurtboxComponent.cs" id="1_h5js2"]
+[ext_resource type="Script" uid="uid://8q6b8nro0rqc" path="res://Scripts/Mobs/MobController.cs" id="1_ypr7k"]
 [ext_resource type="Script" uid="uid://cx7f3msraa047" path="res://Scripts/Combat/HealthComponent.cs" id="2_u8nqw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_04bb1"]
@@ -16,6 +17,7 @@ radius = 0.53027344
 height = 2.0429688
 
 [node name="Mob" type="CharacterBody3D" unique_id=69695702]
+script = ExtResource("1_ypr7k")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1493214985]
 shape = SubResource("CapsuleShape3D_04bb1")
