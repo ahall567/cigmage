@@ -15,6 +15,7 @@ public partial class SpellStateCast : SpellStateBase
     
     // --- EVENTS ---
     public event Action CastFailed;
+
     
     // --- GODOT OVERRIDES ---
     public override void _Ready()

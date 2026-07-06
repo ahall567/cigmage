@@ -8,19 +8,18 @@ public partial class SpellStateRecover : SpellStateBase
 {
     public override SpellState StateKey => SpellState.Recover;
 
-    [Export] private float _recoveryCooldown;
     private Timer _recoveryTimer;
     
     // --- EVENTS ---
     public event Action RecoveryCompleted;
     
     // --- GODOT OVERRIDES ---
-    public override void _Ready()
+    public override async void _Ready()
     {
         base._Ready();
-
+        
         _recoveryTimer = new Timer();
-        _recoveryTimer.WaitTime = _recoveryCooldown;
+        _recoveryTimer.WaitTime = SpellData.RecoveryTime;
         _recoveryTimer.OneShot = true;
         _recoveryTimer.Timeout += OnRecoveryTimerExpired;
         AddChild(_recoveryTimer);

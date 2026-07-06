@@ -5,9 +5,9 @@
 
 [resource]
 script = ExtResource("1_n0a1q")
-SpellName = "Fireball"
-Prefab = ExtResource("1_ekjgt")
-ManaCost = 10.0
-ChargeTime = 0.25
-RecoveryTime = 0.75
+_spellName = "Fireball"
+_prefab = ExtResource("1_ekjgt")
+_manaCost = 10.0
+_chargeTime = 0.25
+_recoveryTime = 0.75
 metadata/_custom_type_script = "uid://cahts7605cuk6"

@@ -8,14 +8,14 @@ namespace CigMage.Spells;
 public partial class SpellBase : Node3D
 {
     [Export] private PlayerCombatController _combatController;
-    [Export] private PackedScene _spellPrefab;
-    [Export] public float ManaCost;
-    [Export] public float ChargeTime;
+    [Export] private SpellDataResource _spellData;
+    
+    public SpellDataResource SpellData => _spellData;
 
     public Label3D StateLabel;
 
-    // TODO: Change this to use SpellData instead of float
-    public event Action<float> SpellSpawned;
+    // TODO: Refactor this to use a specific spell object type once this is made (ex. SpellObject)
+    public event Action<Node, SpellDataResource> SpellSpawned;
 
     public override void _EnterTree()
     {
@@ -25,7 +25,7 @@ public partial class SpellBase : Node3D
     // --- PUBLIC API ---
     public bool TrySpellCast()
     {
-        switch (_combatController.GetManaValue() >= ManaCost)
+        switch (_combatController.GetManaValue() >= _spellData.ManaCost)
         {
             case true:
                 SpawnSpell();
@@ -38,7 +38,7 @@ public partial class SpellBase : Node3D
     // --- INTERNAL LOGIC ---
     private void SpawnSpell()
     {
-        Node objectNode = _spellPrefab.Instantiate();
+        Node objectNode = _spellData.Prefab.Instantiate();
         if (objectNode is Node3D node3D)
         {
             node3D.GlobalTransform = this.GlobalTransform;
@@ -46,6 +46,6 @@ public partial class SpellBase : Node3D
         
         GetTree().CurrentScene.AddChild(objectNode);
 
-        SpellSpawned?.Invoke(ManaCost);
+        SpellSpawned?.Invoke(objectNode, _spellData);
     }
 }

@@ -10,8 +10,6 @@ public partial class PlayerCombatController : Node3D
     public AnimationPlayer Animator;
     private ManaComponent _manaComponent;
     private SpellBase _spell;
-    [Export] private Marker3D _spellSpawnPoint;
-    [Export] public PackedScene SpellPrefab;
     [Export] public Label3D Cig;
     
     // --- GODOT OVERRIDES ---
@@ -44,8 +42,8 @@ public partial class PlayerCombatController : Node3D
     }
     
     // --- EVENT HANDLERS ---
-    private void OnSpellSpawned(float manaCost)
+    private void OnSpellSpawned(Node spellNode, SpellDataResource spellData)
     {
-        _manaComponent.Decrease(manaCost);
+        _manaComponent.Decrease(spellData.ManaCost);
     }
 }
