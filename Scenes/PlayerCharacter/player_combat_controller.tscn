@@ -109,7 +109,6 @@ metadata/_custom_type_script = "uid://cxgpsmcidwjct"
 
 [node name="PlayerCombatStateCast" type="Node" parent="PlayerCombatStateMachine" index="2" unique_id=455665899 node_paths=PackedStringArray("Parent")]
 script = ExtResource("3_xpbl0")
-_cooldownTime = 0.25
 _manaCost = 10.0
 Parent = NodePath("../..")
 metadata/_custom_type_script = "uid://strq8n4iglmv"
