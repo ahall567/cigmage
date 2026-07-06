@@ -20,6 +20,7 @@ public partial class PlayerCombatController : Node3D
         Cig = GetNode<Label3D>("Cig");
         Animator = this.GetChildByType<AnimationPlayer>();
         _manaComponent = this.GetChildByType<ManaComponent>();
+        _spell = this.GetChildByType<SpellBase>();
 
         _spell.SpellSpawned += OnSpellSpawned;
         

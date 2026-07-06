@@ -30,6 +30,7 @@ metadata/_custom_type_script = "uid://dqvxcyn4y0xc3"
 
 [node name="SpellStateCast" type="Node" parent="SpellStateMachine" unique_id=1305558317]
 script = ExtResource("6_v6oc2")
+_castInterval = 0.25
 metadata/_custom_type_script = "uid://dmnb7esl3wdy0"
 
 [node name="SpellStateRecover" type="Node" parent="SpellStateMachine" unique_id=972621978]

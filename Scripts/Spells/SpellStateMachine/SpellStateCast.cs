@@ -29,17 +29,32 @@ public partial class SpellStateCast : SpellStateBase
     {
         _castCooldown.Timeout -= OnCastCooldownExpired;
     }
-    
+
+    public override void HandleInput(InputEvent @event)
+    {
+        base.HandleInput(@event);
+        
+        if (@event.IsActionReleased("primary_fire"))
+        {
+            StateMachine.ChangeState(SpellState.Recover);
+        }
+    }
+
     // --- CLASS OVERRIDES ---
     public override void Update(double delta)
     {
-        switch (SpellBaseParent.TrySpellCast())
+        if (_canFire)
         {
-            case true:
-                break;
-            case false:
-                StateMachine.ChangeState(SpellState.Recover);
-                break;
+            switch (SpellBaseParent.TrySpellCast())
+            {
+                case true:
+                    _canFire = false;
+                    _castCooldown.Start();
+                    break;
+                case false:
+                    StateMachine.ChangeState(SpellState.Recover);
+                    break;
+            }
         }
     }
 

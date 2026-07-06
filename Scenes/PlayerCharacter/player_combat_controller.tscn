@@ -79,8 +79,9 @@ bones/47/rotation = Quaternion(0.28241175, 0.037930418, -0.005897492, 0.958525)
 bones/48/rotation = Quaternion(0.17191812, 0.0066784685, 0.011613011, 0.9850202)
 bones/49/rotation = Quaternion(0.039439738, 0.014837562, -0.024118481, 0.99882066)
 
-[node name="SpellBase" parent="." index="2" unique_id=669143144 instance=ExtResource("3_yqfwp")]
+[node name="SpellBase" parent="." index="2" unique_id=669143144 node_paths=PackedStringArray("_combatController") instance=ExtResource("3_yqfwp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22, 1.64, 1.385)
+_combatController = NodePath("..")
 
 [node name="SpellSpawnPoint" type="Marker3D" parent="." index="3" unique_id=348940900]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22632441, 1.6398431, 1.3848729)
