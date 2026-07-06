@@ -1,4 +1,5 @@
 using Godot;
+using System;
 
 namespace CigMage.Spells.SpellStateMachine;
 
@@ -11,7 +12,10 @@ public partial class SpellStateCast : SpellStateBase
 
     private Timer _castCooldown;
     private bool _canFire;
-
+    
+    // --- EVENTS ---
+    public event Action CastFailed;
+    
     // --- GODOT OVERRIDES ---
     public override void _Ready()
     {
@@ -29,22 +33,21 @@ public partial class SpellStateCast : SpellStateBase
     {
         _castCooldown.Timeout -= OnCastCooldownExpired;
     }
-
-    public override void HandleInput(InputEvent @event)
-    {
-        base.HandleInput(@event);
-        
-        if (@event.IsActionReleased("primary_fire"))
-        {
-            StateMachine.ChangeState(SpellState.Recover);
-        }
-    }
+    
 
     // --- CLASS OVERRIDES ---
+    public override void Enter()
+    {
+        base.Enter();
+        
+        _canFire = true;
+    }
+
     public override void Update(double delta)
     {
         if (_canFire)
         {
+            // TODO: Check for TrySpellCast in ChargeState
             switch (SpellBaseParent.TrySpellCast())
             {
                 case true:
@@ -52,10 +55,15 @@ public partial class SpellStateCast : SpellStateBase
                     _castCooldown.Start();
                     break;
                 case false:
-                    StateMachine.ChangeState(SpellState.Recover);
+                    CastFailed?.Invoke();
                     break;
             }
         }
+    }
+
+    public override void Exit()
+    {
+        _castCooldown.Stop();
     }
 
     // --- EVENT HANDLERS ---

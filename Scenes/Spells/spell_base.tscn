@@ -10,3 +10,4 @@ ManaCost = 10.0
 ChargeTime = 1.0
 
 [node name="StateLabel" type="Label3D" parent="." unique_id=1301236527]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)

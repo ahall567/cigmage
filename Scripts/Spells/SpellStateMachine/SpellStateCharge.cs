@@ -1,4 +1,5 @@
 using Godot;
+using System;
 
 namespace CigMage.Spells.SpellStateMachine;
 
@@ -7,7 +8,11 @@ public partial class SpellStateCharge : SpellStateBase
 {
     public override SpellState StateKey => SpellState.Charge;
 
+    [Export] private float _chargeTime;
     private Timer _chargeTimer;
+    
+    // --- EVENTS ---
+    public event Action ChargeCompleted;
 
     // --- GODOT OVERRIDES ---
     public override void _Ready()
@@ -15,7 +20,7 @@ public partial class SpellStateCharge : SpellStateBase
         base._Ready();
 
         _chargeTimer = new Timer();
-        _chargeTimer.WaitTime = 1f;
+        _chargeTimer.WaitTime = _chargeTime;
         _chargeTimer.OneShot = true;
         _chargeTimer.Timeout += OnChargeTimerExpired;
         AddChild(_chargeTimer);
@@ -37,6 +42,6 @@ public partial class SpellStateCharge : SpellStateBase
     // --- EVENT HANDLERS ---
     private void OnChargeTimerExpired()
     {
-        StateMachine.ChangeState(SpellState.Cast);
+        ChargeCompleted?.Invoke();
     }
 }
