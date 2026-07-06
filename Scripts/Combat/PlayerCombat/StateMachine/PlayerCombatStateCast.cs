@@ -18,7 +18,7 @@ public partial class PlayerCombatStateCast : PlayerCombatStateBase
     public override void Enter()
     {
         base.Enter();
-        // TODO: Move animation control to SpellState once models are moved the SpellBase scene
+        // TODO: Move animation control to SpellState once models are moved to the SpellBase scene
         PlayerCombatControllerParent.Animator.Play("Magic_spell");
         
         // Subscribe to state events
