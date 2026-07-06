@@ -12,7 +12,10 @@ public partial class PlayerCombatStateCast : PlayerCombatStateBase
     public override void Enter()
     {
         base.Enter();
+        // TODO: Move animation control to SpellState
         PlayerCombatControllerParent.Animator.Play("Magic_spell");
+        
+        SpellStateMachine.ChangeState(SpellState.Charge);
     }
 
     public override void HandleInput(InputEvent @event)
@@ -30,5 +33,7 @@ public partial class PlayerCombatStateCast : PlayerCombatStateBase
         {
             PlayerCombatControllerParent.Animator.Play("Relax_hands_idle");
         }
+        
+        SpellStateMachine.ChangeState(SpellState.Recover);
     }
 }

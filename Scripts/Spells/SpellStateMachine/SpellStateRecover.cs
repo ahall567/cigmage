@@ -1,4 +1,5 @@
 using Godot;
+using System;
 
 namespace CigMage.Spells.SpellStateMachine;
 
@@ -7,7 +8,11 @@ public partial class SpellStateRecover : SpellStateBase
 {
     public override SpellState StateKey => SpellState.Recover;
 
+    [Export] private float _recoveryCooldown;
     private Timer _recoveryTimer;
+    
+    // --- EVENTS ---
+    public event Action RecoveryCompleted;
     
     // --- GODOT OVERRIDES ---
     public override void _Ready()
@@ -15,7 +20,7 @@ public partial class SpellStateRecover : SpellStateBase
         base._Ready();
 
         _recoveryTimer = new Timer();
-        _recoveryTimer.WaitTime = 1f;
+        _recoveryTimer.WaitTime = _recoveryCooldown;
         _recoveryTimer.OneShot = true;
         _recoveryTimer.Timeout += OnRecoveryTimerExpired;
         AddChild(_recoveryTimer);
@@ -45,5 +50,6 @@ public partial class SpellStateRecover : SpellStateBase
     private void OnRecoveryTimerExpired()
     {
         StateMachine.ChangeState(SpellState.Idle);
+        RecoveryCompleted?.Invoke();
     }
 }

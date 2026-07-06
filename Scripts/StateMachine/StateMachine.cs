@@ -29,7 +29,7 @@ public partial class StateMachine<T> : Node where T: Enum
     protected T InitialState;
 
     /// <summary>Maps each enum value to its corresponding <see cref="State{T}"/> node.</summary>
-    private readonly Dictionary<T, State<T>> _states = new();
+    protected readonly Dictionary<T, State<T>> States = new();
     private State<T> _currentState;
     public State<T> CurrentState => _currentState;
 
@@ -46,10 +46,10 @@ public partial class StateMachine<T> : Node where T: Enum
             state.Parent = Parent;
             state.Init();
             state.Exit();
-            _states[state.StateKey] = state;
+            States[state.StateKey] = state;
         }
         
-        _currentState = _states[InitialState];
+        _currentState = States[InitialState];
         _currentState.Enter();
     }
     
@@ -78,7 +78,7 @@ public partial class StateMachine<T> : Node where T: Enum
     /// <param name="stateKey">The enum value identifying the target state.</param>
     public void ChangeState(T stateKey)
     {
-        if (!_states.TryGetValue(stateKey, out State<T> newState))
+        if (!States.TryGetValue(stateKey, out State<T> newState))
         {
             GD.PrintErr($"StateMachine.ChangeStat: State {stateKey} not found!");
             return;
@@ -98,7 +98,7 @@ public partial class StateMachine<T> : Node where T: Enum
     /// <returns>The target state.</returns>
     public State<T> GetState(T stateKey)
     {
-        _states.TryGetValue(stateKey, out State<T> resultState);
+        States.TryGetValue(stateKey, out State<T> resultState);
         if (resultState == null)
         {
             GD.PrintErr($"StateMachine.GetState: State {stateKey} not found!");

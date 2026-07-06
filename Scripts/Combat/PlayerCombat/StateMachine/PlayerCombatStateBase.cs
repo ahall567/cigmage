@@ -12,6 +12,6 @@ public abstract partial class PlayerCombatStateBase : State<PlayerCombatState>
     public override void _Ready()
     {
         base._Ready();
-        SpellStateMachine = Parent.GetChildByType<SpellStateMachine>();
+        SpellStateMachine = this.GetChildByType<SpellStateMachine>();
     }
 }

@@ -137,6 +137,7 @@ metadata/_custom_type_script = "uid://dmnb7esl3wdy0"
 
 [node name="SpellStateRecover" type="Node" parent="PlayerCombatStateMachine/PlayerCombatStateCast/SpellStateMachine" index="3" unique_id=584367694]
 script = ExtResource("12_3bt8q")
+_recoveryCooldown = 0.5
 metadata/_custom_type_script = "uid://b2lc0n6luj72"
 
 [node name="ManaComponent" type="Node" parent="." index="6" unique_id=1099135381]
