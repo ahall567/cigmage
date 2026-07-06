@@ -1,3 +1,4 @@
+using CigMage.Spells.SpellStateMachine;
 using Godot;
 
 namespace CigMage.Combat.PlayerCombat.StateMachine;
@@ -6,8 +7,6 @@ namespace CigMage.Combat.PlayerCombat.StateMachine;
 public partial class PlayerCombatStateCast : PlayerCombatStateBase
 {
     public override PlayerCombatState StateKey => PlayerCombatState.Cast;
-
-    [Export] private float _manaCost;
     
     // --- STATE METHODS ---
     public override void Enter()

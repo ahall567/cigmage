@@ -8,6 +8,11 @@
 [ext_resource type="Script" uid="uid://cxgpsmcidwjct" path="res://Scripts/Combat/PlayerCombat/StateMachine/PlayerCombatStateDrag.cs" id="4_38n50"]
 [ext_resource type="Script" uid="uid://bhpfc4pbvd41r" path="res://Scripts/Combat/PlayerCombat/StateMachine/PlayerCombatStateIdle.cs" id="5_62cid"]
 [ext_resource type="Script" uid="uid://bu00kmn45x8xm" path="res://Scripts/Combat/PlayerCombat/ManaComponent.cs" id="7_8b4i8"]
+[ext_resource type="Script" uid="uid://bnvechw3byfbs" path="res://Scripts/Spells/SpellStateMachine/SpellStateMachine.cs" id="8_ath3e"]
+[ext_resource type="Script" uid="uid://b5kx6lu7s7tkl" path="res://Scripts/Spells/SpellStateMachine/SpellStateIdle.cs" id="9_7f71v"]
+[ext_resource type="Script" uid="uid://dqvxcyn4y0xc3" path="res://Scripts/Spells/SpellStateMachine/SpellStateCharge.cs" id="10_0hqjc"]
+[ext_resource type="Script" uid="uid://dmnb7esl3wdy0" path="res://Scripts/Spells/SpellStateMachine/SpellStateCast.cs" id="11_tj5k0"]
+[ext_resource type="Script" uid="uid://b2lc0n6luj72" path="res://Scripts/Spells/SpellStateMachine/SpellStateRecover.cs" id="12_3bt8q"]
 
 [node name="PlayerCombatController" unique_id=977804158 node_paths=PackedStringArray("_spellSpawnPoint", "Cig") instance=ExtResource("1_gyte1")]
 _spellSpawnPoint = NodePath("SpellSpawnPoint")
@@ -109,9 +114,30 @@ metadata/_custom_type_script = "uid://cxgpsmcidwjct"
 
 [node name="PlayerCombatStateCast" type="Node" parent="PlayerCombatStateMachine" index="2" unique_id=455665899 node_paths=PackedStringArray("Parent")]
 script = ExtResource("3_xpbl0")
-_manaCost = 10.0
 Parent = NodePath("../..")
 metadata/_custom_type_script = "uid://strq8n4iglmv"
+
+[node name="SpellStateMachine" type="Node" parent="PlayerCombatStateMachine/PlayerCombatStateCast" index="0" unique_id=194591308 node_paths=PackedStringArray("Parent")]
+script = ExtResource("8_ath3e")
+Parent = NodePath("../../../SpellBase")
+metadata/_custom_type_script = "uid://bnvechw3byfbs"
+
+[node name="SpellStateIdle" type="Node" parent="PlayerCombatStateMachine/PlayerCombatStateCast/SpellStateMachine" index="0" unique_id=841855776]
+script = ExtResource("9_7f71v")
+metadata/_custom_type_script = "uid://b5kx6lu7s7tkl"
+
+[node name="SpellStateCharge" type="Node" parent="PlayerCombatStateMachine/PlayerCombatStateCast/SpellStateMachine" index="1" unique_id=934334208]
+script = ExtResource("10_0hqjc")
+metadata/_custom_type_script = "uid://dqvxcyn4y0xc3"
+
+[node name="SpellStateCast" type="Node" parent="PlayerCombatStateMachine/PlayerCombatStateCast/SpellStateMachine" index="2" unique_id=492267942]
+script = ExtResource("11_tj5k0")
+_castInterval = 0.25
+metadata/_custom_type_script = "uid://dmnb7esl3wdy0"
+
+[node name="SpellStateRecover" type="Node" parent="PlayerCombatStateMachine/PlayerCombatStateCast/SpellStateMachine" index="3" unique_id=584367694]
+script = ExtResource("12_3bt8q")
+metadata/_custom_type_script = "uid://b2lc0n6luj72"
 
 [node name="ManaComponent" type="Node" parent="." index="6" unique_id=1099135381]
 script = ExtResource("7_8b4i8")

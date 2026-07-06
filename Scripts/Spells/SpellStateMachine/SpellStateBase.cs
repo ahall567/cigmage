@@ -11,6 +11,5 @@ public abstract partial class SpellStateBase : State<SpellState>
     {
         base.Enter();
         SpellBaseParent.StateLabel.Text = StateKey.ToString();
-        GD.Print($"SpellStateBase - Entering state {this.Name}");
     }
 }

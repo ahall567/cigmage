@@ -14,7 +14,7 @@ public partial class SpellBase : Node3D
 
     public Label3D StateLabel;
 
-    // TODO: Change this to use SpellData
+    // TODO: Change this to use SpellData instead of float
     public event Action<float> SpellSpawned;
 
     public override void _EnterTree()
