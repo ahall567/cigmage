@@ -4,7 +4,7 @@ using System;
 namespace CigMage.Spells.SpellStateMachine;
 
 [GlobalClass]
-public partial class SpellStateCharge : SpellStateBase
+public partial class SpellStateCharge : SpellStateBase, IRequireSpellData
 {
     public override SpellState StateKey => SpellState.Charge;
 
@@ -17,21 +17,20 @@ public partial class SpellStateCharge : SpellStateBase
     public override void Enter()
     {
         base.Enter();
-        _chargeTimer.Start();
+        if (_chargeTimer != null) _chargeTimer.Start();
     }
 
     public override void Exit()
     {
         base.Exit();
-        _chargeTimer.Stop();
+        if (_chargeTimer != null) _chargeTimer.Stop();
     }
-
-    public override void OnSpellBaseReady()
+    
+    // --- IRequireSpellData IMPLEMENTATION ---
+    public void InitFromData(SpellDataResource spellData)
     {
-        base.OnSpellBaseReady();
-        
         _chargeTimer = new Timer();
-        _chargeTimer.WaitTime = SpellData.ChargeTime;
+        _chargeTimer.WaitTime = spellData.ChargeTime;
         _chargeTimer.OneShot = true;
         _chargeTimer.Timeout += OnChargeTimerExpired;
         AddChild(_chargeTimer);

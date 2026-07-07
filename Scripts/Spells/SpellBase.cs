@@ -36,6 +36,12 @@ public partial class SpellBase : Node3D
                 return false;
         }
     }
+
+    public void LoadNewData(SpellDataResource newData)
+    {
+        _spellData = newData;
+        NewData?.Invoke(_spellData);
+    }
     
     // --- INTERNAL LOGIC ---
     private void SpawnSpell()

@@ -1,4 +1,5 @@
 using Godot;
+using System.Collections.Generic;
 using CigMage.Extensions;
 using CigMage.Spells;
 
@@ -20,7 +21,12 @@ public partial class PlayerCombatController : Node3D
         _manaComponent = this.GetChildByType<ManaComponent>();
         _spell = this.GetChildByType<SpellBase>();
 
-        _spell.SpellSpawned += OnSpellSpawned;
+        if (_spell != null)
+        {
+            _spell.SpellSpawned += OnSpellSpawned;
+            InitChildren();
+        }
+        
         
         Animator.Play("Relax_hands_idle");
     }
@@ -39,6 +45,19 @@ public partial class PlayerCombatController : Node3D
     public void RegenMana(float amount)
     {
         _manaComponent.Increase(amount);
+    }
+    
+    // --- INTERNAL LOGIC ---
+    private void InitChildren()
+    {
+        List<Node> allChildren = this.GetChildrenByType<Node>();
+        foreach (Node child in allChildren)
+        {
+            if (child is IRequireSpellData needsData)
+            {
+                needsData.InitFromData(_spell.SpellData);
+            }
+        }
     }
     
     // --- EVENT HANDLERS ---

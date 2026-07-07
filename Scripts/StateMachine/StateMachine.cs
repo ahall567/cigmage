@@ -50,6 +50,7 @@ public partial class StateMachine<T> : Node where T: Enum
         }
         
         _currentState = States[InitialState];
+        GD.Print($"StateMachine: CurrentState - {_currentState.Name}");
         _currentState.Enter();
     }
     
@@ -80,7 +81,7 @@ public partial class StateMachine<T> : Node where T: Enum
     {
         if (!States.TryGetValue(stateKey, out State<T> newState))
         {
-            GD.PrintErr($"StateMachine.ChangeStat: State {stateKey} not found!");
+            GD.PrintErr($"StateMachine.ChangeState: State {stateKey} not found!");
             return;
         }
 
