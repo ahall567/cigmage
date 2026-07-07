@@ -14,6 +14,8 @@ public partial class SpellBase : Node3D
 
     public Label3D StateLabel;
 
+    // --- EVENTS ---
+    public event Action<SpellDataResource> NewData;
     // TODO: Refactor this to use a specific spell object type once this is made (ex. SpellObject)
     public event Action<Node, SpellDataResource> SpellSpawned;
 
