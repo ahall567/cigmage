@@ -1,5 +1,7 @@
 using Godot;
+using System.Collections.Generic;
 using CigMage.Extensions;
+using CigMage.Spells;
 
 namespace CigMage.Combat.PlayerCombat;
 
@@ -8,8 +10,7 @@ public partial class PlayerCombatController : Node3D
 {
     public AnimationPlayer Animator;
     private ManaComponent _manaComponent;
-    [Export] private Marker3D _spellSpawnPoint;
-    [Export] public PackedScene SpellPrefab;
+    private SpellBase _spell;
     [Export] public Label3D Cig;
     
     // --- GODOT OVERRIDES ---
@@ -18,31 +19,27 @@ public partial class PlayerCombatController : Node3D
         Cig = GetNode<Label3D>("Cig");
         Animator = this.GetChildByType<AnimationPlayer>();
         _manaComponent = this.GetChildByType<ManaComponent>();
+        _spell = this.GetChildByType<SpellBase>();
+
+        if (_spell != null)
+        {
+            _spell.SpellSpawned += OnSpellSpawned;
+            InitChildren();
+        }
+        
+        
         Animator.Play("Relax_hands_idle");
     }
 
-    // --- PUBLIC API ---
-    
-    public bool SpawnSpell(float manaCost)
+    public override void _ExitTree()
     {
-        if (manaCost >= _manaComponent.CurrentValue)
-        {
-            return false;
-        }
-        else
-        {
-            Node objectNode = SpellPrefab.Instantiate();
-            if (objectNode is Node3D node3D)
-            {
-                node3D.GlobalTransform = _spellSpawnPoint.GlobalTransform;
-            }
-        
-            GetTree().CurrentScene.AddChild(objectNode);
-            
-            _manaComponent.Decrease(manaCost);
-            
-            return true;
-        }
+        _spell.SpellSpawned -= OnSpellSpawned;
+    }
+
+    // --- PUBLIC API ---
+    public float GetManaValue()
+    {
+        return _manaComponent.CurrentValue;
     }
 
     public void RegenMana(float amount)
@@ -50,4 +47,22 @@ public partial class PlayerCombatController : Node3D
         _manaComponent.Increase(amount);
     }
     
+    // --- INTERNAL LOGIC ---
+    private void InitChildren()
+    {
+        List<Node> allChildren = this.GetChildrenByType<Node>();
+        foreach (Node child in allChildren)
+        {
+            if (child is IRequireSpellData needsData)
+            {
+                needsData.InitFromData(_spell.SpellData);
+            }
+        }
+    }
+    
+    // --- EVENT HANDLERS ---
+    private void OnSpellSpawned(Node spellNode, SpellDataResource spellData)
+    {
+        _manaComponent.Decrease(spellData.ManaCost);
+    }
 }

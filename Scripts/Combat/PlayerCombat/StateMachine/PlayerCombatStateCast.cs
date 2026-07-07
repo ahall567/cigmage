@@ -1,3 +1,4 @@
+using CigMage.Spells.SpellStateMachine;
 using Godot;
 
 namespace CigMage.Combat.PlayerCombat.StateMachine;
@@ -6,52 +7,26 @@ namespace CigMage.Combat.PlayerCombat.StateMachine;
 public partial class PlayerCombatStateCast : PlayerCombatStateBase
 {
     public override PlayerCombatState StateKey => PlayerCombatState.Cast;
-
-    [Export] private float _cooldownTime;
-    [Export] private float _manaCost;
-
-    private Timer _castCooldown;
-    private bool _canFire;
     
     // --- GODOT OVERRIDES ---
-    public override void _Ready()
-    {
-        base._Ready();
-        _castCooldown = new Timer();
-        _castCooldown.WaitTime = _cooldownTime;
-        _castCooldown.OneShot = true;
-        _castCooldown.Timeout += OnCastCooldownExpired;
-        AddChild(_castCooldown);
-        _canFire = true;
-    }
-
     public override void _ExitTree()
     {
-        _castCooldown.Timeout -= OnCastCooldownExpired;
+        UnsubscribeFromEvents();
     }
 
     // --- STATE METHODS ---
     public override void Enter()
     {
         base.Enter();
+        // TODO: Move animation control to SpellState once models are moved to the SpellBase scene
         PlayerCombatControllerParent.Animator.Play("Magic_spell");
-    }
-
-    public override void Update(double delta)
-    {
-        base.Update(delta);
         
-        if (_canFire)
-        {
-            bool spellSpawned = PlayerCombatControllerParent.SpawnSpell(_manaCost);
-            _canFire = false;
-            _castCooldown.Start();
-
-            if (!spellSpawned)
-            {
-                StateMachine.ChangeState(PlayerCombatState.Idle);
-            }
-        }
+        // Subscribe to state events
+        SpellStateMachine.ChargeCompleted += OnChargeCompleted;
+        SpellStateMachine.SpellCastFailed += OnSpellCastFailed;
+        SpellStateMachine.RecoveryCompleted += OnRecoveryCompleted;
+        
+        SpellStateMachine.ChangeState(SpellState.Charge);
     }
 
     public override void HandleInput(InputEvent @event)
@@ -69,11 +44,34 @@ public partial class PlayerCombatStateCast : PlayerCombatStateBase
         {
             PlayerCombatControllerParent.Animator.Play("Relax_hands_idle");
         }
+        SpellStateMachine.ChangeState(SpellState.Recover);
+        UnsubscribeFromEvents();
+    }
+    
+    // --- INTERNAL LOGIC ---
+    private void UnsubscribeFromEvents()
+    {
+        SpellStateMachine.ChargeCompleted -= OnChargeCompleted;
+        SpellStateMachine.SpellCastFailed -= OnSpellCastFailed;
+        SpellStateMachine.RecoveryCompleted -= OnRecoveryCompleted;
+    }
+    
+    // --- EVENT HANDLERS ---
+    private void OnChargeCompleted()
+    {
+        SpellStateMachine.ChargeCompleted -= OnChargeCompleted;
+        SpellStateMachine.ChangeState(SpellState.Cast);
     }
 
-    // --- EVENT HANDLERS ---
-    private void OnCastCooldownExpired()
+    private void OnSpellCastFailed()
     {
-        _canFire = true;
+        SpellStateMachine.SpellCastFailed -= OnSpellCastFailed;
+        SpellStateMachine.ChangeState(SpellState.Recover);
+    }
+    
+    private void OnRecoveryCompleted()
+    {
+        SpellStateMachine.RecoveryCompleted -= OnRecoveryCompleted;
+        StateMachine.ChangeState(PlayerCombatState.Idle);
     }
 }
