@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bh2m77wqd8nqi" path="res://Scripts/Combat/PlayerCombat/PlayerCombatController.cs" id="1_7f71v"]
 [ext_resource type="Texture2D" uid="uid://r8lta6uhfcl3" path="res://Assets/Arms/PSX_First_Person_Arms_arms.png" id="2_0hqjc"]
 [ext_resource type="Script" uid="uid://bumk1xf16apsp" path="res://Scripts/Combat/PlayerCombat/StateMachine/PlayerCombatStateMachine.cs" id="2_gp34t"]
+[ext_resource type="Resource" uid="uid://dy16w7g8yi02q" path="res://Scripts/Spells/Fireball/fireball_data.tres" id="3_ath3e"]
 [ext_resource type="Script" uid="uid://strq8n4iglmv" path="res://Scripts/Combat/PlayerCombat/StateMachine/PlayerCombatStateCast.cs" id="3_xpbl0"]
 [ext_resource type="PackedScene" uid="uid://b8u2entb8ru6j" path="res://Scenes/Spells/spell_base.tscn" id="3_yqfwp"]
 [ext_resource type="Script" uid="uid://cxgpsmcidwjct" path="res://Scripts/Combat/PlayerCombat/StateMachine/PlayerCombatStateDrag.cs" id="4_38n50"]
@@ -5550,8 +5551,10 @@ skeleton = NodePath("..")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2096032959]
 libraries/ = SubResource("AnimationLibrary_fm0t2")
 
-[node name="SpellBase" parent="." unique_id=669143144 instance=ExtResource("3_yqfwp")]
+[node name="SpellBase" parent="." unique_id=669143144 node_paths=PackedStringArray("_combatController") instance=ExtResource("3_yqfwp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22, 1.64, 1.385)
+_combatController = NodePath("..")
+_spellData = ExtResource("3_ath3e")
 
 [node name="Cig" type="Label3D" parent="." unique_id=1027686205]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.23389989, 1.6593163, 0.78639627)
