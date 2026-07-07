@@ -49,7 +49,7 @@ public partial class SpellBase : Node3D
         Node objectNode = _spellData.Prefab.Instantiate();
         if (objectNode is Node3D node3D)
         {
-            node3D.GlobalTransform = this.GlobalTransform;
+            node3D.GlobalTransform = GlobalTransform;
         }
         
         GetTree().CurrentScene.AddChild(objectNode);
