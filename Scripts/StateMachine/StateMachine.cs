@@ -45,12 +45,11 @@ public partial class StateMachine<T> : Node where T: Enum
             state.StateMachine = this;
             state.Parent = Parent;
             state.Init();
-            state.Exit();
+            // state.Exit();
             States[state.StateKey] = state;
         }
         
         _currentState = States[InitialState];
-        GD.Print($"StateMachine: CurrentState - {_currentState.Name}");
         _currentState.Enter();
     }
     
