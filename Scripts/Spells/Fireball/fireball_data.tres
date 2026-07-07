@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SpellDataResource" format=3 uid="uid://dy16w7g8yi02q"]
+[gd_resource type="Resource" format=3 uid="uid://dy16w7g8yi02q"]
 
 [ext_resource type="PackedScene" uid="uid://b7ty6hjewlyyo" path="res://Scenes/Spells/fireball_projectile.tscn" id="1_ekjgt"]
 [ext_resource type="Script" uid="uid://cahts7605cuk6" path="res://Scripts/Spells/SpellDataResource.cs" id="1_n0a1q"]
