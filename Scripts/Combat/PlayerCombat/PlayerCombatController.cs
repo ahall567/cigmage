@@ -8,7 +8,6 @@ namespace CigMage.Combat.PlayerCombat;
 [GlobalClass]
 public partial class PlayerCombatController : Node3D
 {
-    public AnimationPlayer Animator;
     private ManaComponent _manaComponent;
     private SpellBase _spell;
     [Export] public Label3D Cig;
@@ -17,7 +16,6 @@ public partial class PlayerCombatController : Node3D
     public override void _Ready()
     {
         Cig = GetNode<Label3D>("Cig");
-        Animator = this.GetChildByType<AnimationPlayer>();
         _manaComponent = this.GetChildByType<ManaComponent>();
         _spell = this.GetChildByType<SpellBase>();
 
@@ -26,9 +24,6 @@ public partial class PlayerCombatController : Node3D
             _spell.SpellSpawned += OnSpellSpawned;
             InitChildren();
         }
-        
-        
-        Animator.Play("Relax_hands_idle");
     }
 
     public override void _ExitTree()
