@@ -5,28 +5,31 @@
 [ext_resource type="Resource" uid="uid://dy16w7g8yi02q" path="res://Scripts/Spells/Fireball/fireball_data.tres" id="3_ath3e"]
 [ext_resource type="Script" uid="uid://strq8n4iglmv" path="res://Scripts/Combat/PlayerCombat/StateMachine/PlayerCombatStateCast.cs" id="3_xpbl0"]
 [ext_resource type="PackedScene" uid="uid://b8u2entb8ru6j" path="res://Scenes/Spells/spell_base.tscn" id="3_yqfwp"]
+[ext_resource type="PackedScene" uid="uid://soeansrwcy7e" path="res://Scenes/cig_base.tscn" id="4_7f71v"]
 [ext_resource type="Script" uid="uid://cxgpsmcidwjct" path="res://Scripts/Combat/PlayerCombat/StateMachine/PlayerCombatStateDrag.cs" id="4_38n50"]
+[ext_resource type="Script" uid="uid://bf5jqhjmnyeey" path="res://Scripts/PlayerCharacter/Cig/CigBase.cs" id="5_3bt8q"]
 [ext_resource type="Script" uid="uid://bhpfc4pbvd41r" path="res://Scripts/Combat/PlayerCombat/StateMachine/PlayerCombatStateIdle.cs" id="5_62cid"]
 [ext_resource type="Script" uid="uid://bu00kmn45x8xm" path="res://Scripts/Combat/PlayerCombat/ManaComponent.cs" id="7_8b4i8"]
 [ext_resource type="Script" uid="uid://bnvechw3byfbs" path="res://Scripts/Spells/SpellStateMachine/SpellStateMachine.cs" id="8_ath3e"]
+[ext_resource type="Script" uid="uid://b04sktq4scuu5" path="res://Scripts/PlayerCharacter/Cig/CigStateMachine.cs" id="9_0hqjc"]
 [ext_resource type="Script" uid="uid://b5kx6lu7s7tkl" path="res://Scripts/Spells/SpellStateMachine/SpellStateIdle.cs" id="9_7f71v"]
 [ext_resource type="Script" uid="uid://dqvxcyn4y0xc3" path="res://Scripts/Spells/SpellStateMachine/SpellStateCharge.cs" id="10_0hqjc"]
+[ext_resource type="Script" uid="uid://c812hfv5ieds7" path="res://Scripts/PlayerCharacter/Cig/CigStateIdle.cs" id="10_tj5k0"]
 [ext_resource type="Script" uid="uid://dmnb7esl3wdy0" path="res://Scripts/Spells/SpellStateMachine/SpellStateCast.cs" id="11_tj5k0"]
 [ext_resource type="Script" uid="uid://b2lc0n6luj72" path="res://Scripts/Spells/SpellStateMachine/SpellStateRecover.cs" id="12_3bt8q"]
 
 [node name="PlayerCombatController" type="Node3D" unique_id=977804158 node_paths=PackedStringArray("Cig")]
 script = ExtResource("1_7f71v")
-Cig = NodePath("Cig")
+Cig = NodePath("")
 
 [node name="SpellBase" parent="." unique_id=669143144 node_paths=PackedStringArray("_combatController") instance=ExtResource("3_yqfwp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22, 1.64, 1.385)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22, 1.64, 1.39)
 _combatController = NodePath("..")
 _spellData = ExtResource("3_ath3e")
 
-[node name="Cig" type="Label3D" parent="." unique_id=1027686205]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.23389989, 1.6593163, 0.78639627)
-visible = false
-text = "Taking Drag"
+[node name="CigBase" parent="." unique_id=1179404167 instance=ExtResource("4_7f71v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22, 1.64, 1.39)
+script = ExtResource("5_3bt8q")
 
 [node name="ManaComponent" type="Node" parent="." unique_id=1099135381]
 script = ExtResource("7_8b4i8")
@@ -48,6 +51,15 @@ script = ExtResource("4_38n50")
 _refillRate = 10.0
 Parent = NodePath("../..")
 metadata/_custom_type_script = "uid://cxgpsmcidwjct"
+
+[node name="CigStateMachine" type="Node" parent="PlayerCombatStateMachine/PlayerCombatStateDrag" unique_id=1158395263 node_paths=PackedStringArray("Parent")]
+script = ExtResource("9_0hqjc")
+Parent = NodePath("../../../CigBase")
+metadata/_custom_type_script = "uid://b04sktq4scuu5"
+
+[node name="CigStateIdle" type="Node" parent="PlayerCombatStateMachine/PlayerCombatStateDrag/CigStateMachine" unique_id=1231578409]
+script = ExtResource("10_tj5k0")
+metadata/_custom_type_script = "uid://c812hfv5ieds7"
 
 [node name="PlayerCombatStateCast" type="Node" parent="PlayerCombatStateMachine" unique_id=455665899 node_paths=PackedStringArray("Parent")]
 script = ExtResource("3_xpbl0")

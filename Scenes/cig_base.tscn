@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://soeansrwcy7e"]
+
+[node name="CigBase" type="Node3D" unique_id=1179404167]
+
+[node name="StateLabel" type="Label3D" parent="." unique_id=435169812]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 1.5, 0, 0)

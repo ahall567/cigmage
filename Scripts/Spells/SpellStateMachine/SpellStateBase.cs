@@ -10,6 +10,6 @@ public abstract partial class SpellStateBase : State<SpellState>
     // --- CLASS OVERRIDES ---
     public override void Enter()
     {
-        SpellBaseParent.StateLabel.Text = StateKey.ToString();
+        SpellBaseParent.StateLabel.Text = $"SpellState: {StateKey.ToString()}";
     }
 }

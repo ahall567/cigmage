@@ -1,3 +1,4 @@
+using CigMage.PlayerCharacter.Cig;
 using Godot;
 
 namespace CigMage.Combat.PlayerCombat.StateMachine;
@@ -12,7 +13,8 @@ public partial class PlayerCombatStateDrag : PlayerCombatStateBase
     public override void Enter()
     {
         base.Enter();
-        PlayerCombatControllerParent.Cig.Visible = true;
+        
+        CigStateMachine.ChangeState(CigState.Windup);
     }
 
     public override void Update(double delta)
