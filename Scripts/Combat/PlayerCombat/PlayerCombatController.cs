@@ -11,12 +11,10 @@ public partial class PlayerCombatController : Node3D
     private ManaComponent _manaComponent;
     public ManaComponent ManaComponent => _manaComponent;
     private SpellBase _spell;
-    [Export] public Label3D Cig;
     
     // --- GODOT OVERRIDES ---
     public override void _Ready()
     {
-        Cig = GetNode<Label3D>("Cig");
         _manaComponent = this.GetChildByType<ManaComponent>();
         _spell = this.GetChildByType<SpellBase>();
 

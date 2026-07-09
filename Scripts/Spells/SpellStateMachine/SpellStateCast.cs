@@ -11,7 +11,6 @@ public partial class SpellStateCast : SpellStateBase
     [Export] private float _castInterval;
 
     private Timer _castCooldown;
-    private bool _canFire;
     
     // --- EVENTS ---
     public event Action CastFailed;
@@ -27,7 +26,6 @@ public partial class SpellStateCast : SpellStateBase
         _castCooldown.OneShot = true;
         _castCooldown.Timeout += OnCastCooldownExpired;
         AddChild(_castCooldown);
-        _canFire = true;
     }
 
     public override void _ExitTree()
@@ -41,25 +39,7 @@ public partial class SpellStateCast : SpellStateBase
     {
         base.Enter();
         
-        _canFire = true;
-    }
-
-    public override void Update(double delta)
-    {
-        if (_canFire)
-        {
-            // TODO: Check for TrySpellCast in ChargeState
-            switch (SpellBaseParent.TrySpellCast())
-            {
-                case true:
-                    _canFire = false;
-                    _castCooldown.Start();
-                    break;
-                case false:
-                    CastFailed?.Invoke();
-                    break;
-            }
-        }
+        OnCastCooldownExpired();
     }
 
     public override void Exit()
@@ -70,6 +50,14 @@ public partial class SpellStateCast : SpellStateBase
     // --- EVENT HANDLERS ---
     private void OnCastCooldownExpired()
     {
-        _canFire = true;
+        switch (SpellBaseParent.TrySpellCast())
+        {
+            case true:
+                _castCooldown.Start();
+                break;
+            case false:
+                CastFailed?.Invoke();
+                break;
+        }
     }
 }
