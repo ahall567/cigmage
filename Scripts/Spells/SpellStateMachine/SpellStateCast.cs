@@ -52,12 +52,10 @@ public partial class SpellStateCast : SpellStateBase
     {
         switch (SpellBaseParent.TrySpellCast())
         {
-            case true:
-                _castCooldown.Start();
-                break;
             case false:
                 CastFailed?.Invoke();
                 break;
         }
+        _castCooldown.Start();
     }
 }
