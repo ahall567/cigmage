@@ -18,9 +18,8 @@
 [ext_resource type="Script" uid="uid://dmnb7esl3wdy0" path="res://Scripts/Spells/SpellStateMachine/SpellStateCast.cs" id="11_tj5k0"]
 [ext_resource type="Script" uid="uid://b2lc0n6luj72" path="res://Scripts/Spells/SpellStateMachine/SpellStateRecover.cs" id="12_3bt8q"]
 
-[node name="PlayerCombatController" type="Node3D" unique_id=977804158 node_paths=PackedStringArray("Cig")]
+[node name="PlayerCombatController" type="Node3D" unique_id=977804158]
 script = ExtResource("1_7f71v")
-Cig = NodePath("")
 
 [node name="SpellBase" parent="." unique_id=669143144 node_paths=PackedStringArray("_combatController") instance=ExtResource("3_yqfwp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22, 1.64, 1.39)

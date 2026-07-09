@@ -10,9 +10,18 @@ public partial class PlayerCombatStateDrag : PlayerCombatStateBase
 
     [Export] private float _refillRate;
 
+    // --- GODOT OVERRIDES ---
+    public override void _ExitTree()
+    {
+        UnsubscribeFromEvents();
+    }
+
+    // --- STATE METHODS ---
     public override void Enter()
     {
         base.Enter();
+        
+        // TODO: Subscribe to state events here
         
         CigStateMachine.ChangeState(CigState.Windup);
     }
@@ -34,7 +43,24 @@ public partial class PlayerCombatStateDrag : PlayerCombatStateBase
 
     public override void Exit()
     {
-        base.Exit();
-        PlayerCombatControllerParent.Cig.Visible = false;
+        CigStateMachine.ChangeState(CigState.Exhale);
+        UnsubscribeFromEvents();
+    }
+    
+    // --- EVENT HANDLERS ---
+    private void OnWindupCompleted()
+    {
+        CigStateMachine.ChangeState(CigState.Inhale);
+    }
+
+    private void OnTooMuchSmoke()
+    {
+        StateMachine.ChangeState(PlayerCombatState.Cough);
+    }
+    
+    // --- INTERNAL LOGIC ---
+    private void UnsubscribeFromEvents()
+    {
+        
     }
 }
