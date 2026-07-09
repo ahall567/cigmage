@@ -9,6 +9,7 @@ namespace CigMage.Combat.PlayerCombat;
 public partial class PlayerCombatController : Node3D
 {
     private ManaComponent _manaComponent;
+    public ManaComponent ManaComponent => _manaComponent;
     private SpellBase _spell;
     [Export] public Label3D Cig;
     
@@ -36,11 +37,7 @@ public partial class PlayerCombatController : Node3D
     {
         return _manaComponent.CurrentValue;
     }
-
-    public void RegenMana(float amount)
-    {
-        _manaComponent.Increase(amount);
-    }
+    
     
     // --- INTERNAL LOGIC ---
     private void InitChildren()

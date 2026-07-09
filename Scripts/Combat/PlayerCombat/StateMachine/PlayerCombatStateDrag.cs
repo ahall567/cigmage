@@ -26,12 +26,6 @@ public partial class PlayerCombatStateDrag : PlayerCombatStateBase
         CigStateMachine.ChangeState(CigState.Windup);
     }
 
-    public override void Update(double delta)
-    {
-        float manaToAdd = _refillRate * (float)delta;
-        PlayerCombatControllerParent.RegenMana(manaToAdd);
-    }
-
     public override void HandleInput(InputEvent @event)
     {
         base.HandleInput(@event);
