@@ -39,20 +39,17 @@ public partial class SpellStateCast : SpellStateBase
     {
         base.Enter();
         
-        GD.Print($"SpellStateCast.Enter");
         OnCastCooldownExpired();
     }
 
     public override void Exit()
     {
-        GD.Print($"SpellStateCast.Exit");
         _castCooldown.Stop();
     }
 
     // --- EVENT HANDLERS ---
     private void OnCastCooldownExpired()
     {
-        GD.Print($"SpellStateCast: OnCastCooldownExpired called");
         switch (SpellBaseParent.TrySpellCast())
         {
             case true:

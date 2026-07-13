@@ -59,7 +59,6 @@ public partial class PlayerCombatStateCast : PlayerCombatStateBase
 
     private void OnSpellCastFailed()
     {
-        GD.Print($"PlayerCombatStateCast: OnSpellCastFailed");
         SpellStateMachine.ChangeState(SpellState.Recover);
     }
     

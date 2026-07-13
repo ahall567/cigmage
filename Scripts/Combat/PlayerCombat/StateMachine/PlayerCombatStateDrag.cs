@@ -50,9 +50,7 @@ public partial class PlayerCombatStateDrag : PlayerCombatStateBase
 
     private void OnExhaleCompleted()
     {
-        GD.Print($"PlayerCombatStateDrag: OnExhaleCompleted");
         CigStateMachine.ExhaleCompleted -= OnExhaleCompleted;
-        GD.Print($"PlayerCOmbatStateDrag: OnExhaleCompleted finished");
         CigStateMachine.ChangeState(CigState.Idle);
         
     }

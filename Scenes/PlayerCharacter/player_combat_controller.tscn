@@ -58,7 +58,7 @@ metadata/_custom_type_script = "uid://bhpfc4pbvd41r"
 
 [node name="PlayerCombatStateDrag" type="Node" parent="PlayerCombatStateMachine" unique_id=814898436 node_paths=PackedStringArray("StateLabel", "Parent")]
 script = ExtResource("4_38n50")
-_refillRate = 10.0
+_refillRate = 20.0
 StateLabel = NodePath("../../Label3D")
 Parent = NodePath("../..")
 metadata/_custom_type_script = "uid://cxgpsmcidwjct"
