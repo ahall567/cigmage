@@ -12,6 +12,12 @@ public partial class CigStateMachine : StateMachine<CigState>
     public event Action WindupCompleted;
     public event Action ExhaleCompleted;
 
+    public override void ChangeState(CigState stateKey)
+    {
+        GD.Print($"CigStateMachine: Changing State to {stateKey}");
+        base.ChangeState(stateKey);
+    }
+
     public override void _Ready()
     {
         InitialState = _initialState;
@@ -46,6 +52,7 @@ public partial class CigStateMachine : StateMachine<CigState>
 
     private void OnExhaleCompleted()
     {
+        GD.Print($"CigStateMachine: OnExhaleCompleted()");
         ExhaleCompleted?.Invoke();
     }
 }

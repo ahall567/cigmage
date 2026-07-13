@@ -25,14 +25,20 @@
 [node name="PlayerCombatController" type="Node3D" unique_id=977804158]
 script = ExtResource("1_7f71v")
 
+[node name="Label3D" type="Label3D" parent="." unique_id=1140190665]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 1.7678406, 2.607774)
+text = "Test"
+
 [node name="SpellBase" parent="." unique_id=669143144 node_paths=PackedStringArray("_combatController") instance=ExtResource("3_yqfwp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22, 1.64, 1.39)
 _combatController = NodePath("..")
 _spellData = ExtResource("3_ath3e")
 
-[node name="CigBase" parent="." unique_id=1179404167 instance=ExtResource("4_7f71v")]
+[node name="CigBase" parent="." unique_id=1179404167 node_paths=PackedStringArray("_playerCombatController") instance=ExtResource("4_7f71v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22, 1.64, 1.39)
 script = ExtResource("5_3bt8q")
+_playerCombatController = NodePath("..")
+_refillRate = 5.0
 
 [node name="ManaComponent" type="Node" parent="." unique_id=1099135381]
 script = ExtResource("7_8b4i8")
@@ -44,14 +50,16 @@ script = ExtResource("2_gp34t")
 Parent = NodePath("..")
 metadata/_custom_type_script = "uid://bumk1xf16apsp"
 
-[node name="PlayerCombatStateIdle" type="Node" parent="PlayerCombatStateMachine" unique_id=258278736 node_paths=PackedStringArray("Parent")]
+[node name="PlayerCombatStateIdle" type="Node" parent="PlayerCombatStateMachine" unique_id=258278736 node_paths=PackedStringArray("StateLabel", "Parent")]
 script = ExtResource("5_62cid")
+StateLabel = NodePath("../../Label3D")
 Parent = NodePath("../..")
 metadata/_custom_type_script = "uid://bhpfc4pbvd41r"
 
-[node name="PlayerCombatStateDrag" type="Node" parent="PlayerCombatStateMachine" unique_id=814898436 node_paths=PackedStringArray("Parent")]
+[node name="PlayerCombatStateDrag" type="Node" parent="PlayerCombatStateMachine" unique_id=814898436 node_paths=PackedStringArray("StateLabel", "Parent")]
 script = ExtResource("4_38n50")
 _refillRate = 10.0
+StateLabel = NodePath("../../Label3D")
 Parent = NodePath("../..")
 metadata/_custom_type_script = "uid://cxgpsmcidwjct"
 
@@ -80,8 +88,9 @@ metadata/_custom_type_script = "uid://2f7qutscia6h"
 script = ExtResource("15_rt5rh")
 metadata/_custom_type_script = "uid://c0rbpj6bfyjxy"
 
-[node name="PlayerCombatStateCast" type="Node" parent="PlayerCombatStateMachine" unique_id=455665899 node_paths=PackedStringArray("Parent")]
+[node name="PlayerCombatStateCast" type="Node" parent="PlayerCombatStateMachine" unique_id=455665899 node_paths=PackedStringArray("StateLabel", "Parent")]
 script = ExtResource("3_xpbl0")
+StateLabel = NodePath("../../Label3D")
 Parent = NodePath("../..")
 metadata/_custom_type_script = "uid://strq8n4iglmv"
 

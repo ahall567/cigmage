@@ -76,7 +76,7 @@ public partial class StateMachine<T> : Node where T: Enum
     /// on the new state. No-ops with an error log if the key is not registered.
     /// </summary>
     /// <param name="stateKey">The enum value identifying the target state.</param>
-    public void ChangeState(T stateKey)
+    public virtual void ChangeState(T stateKey)
     {
         if (!States.TryGetValue(stateKey, out State<T> newState))
         {

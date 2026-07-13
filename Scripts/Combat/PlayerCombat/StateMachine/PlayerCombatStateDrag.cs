@@ -10,18 +10,13 @@ public partial class PlayerCombatStateDrag : PlayerCombatStateBase
 
     [Export] private float _refillRate;
 
-    // --- GODOT OVERRIDES ---
-    public override void _ExitTree()
-    {
-        UnsubscribeFromEvents();
-    }
-
     // --- STATE METHODS ---
     public override void Enter()
     {
         base.Enter();
-        
-        // TODO: Subscribe to state events here
+
+        CigStateMachine.WindupCompleted += OnWindupCompleted;
+        CigStateMachine.ExhaleCompleted += OnExhaleCompleted;
         
         CigStateMachine.ChangeState(CigState.Windup);
     }
@@ -38,13 +33,28 @@ public partial class PlayerCombatStateDrag : PlayerCombatStateBase
     public override void Exit()
     {
         CigStateMachine.ChangeState(CigState.Exhale);
+    }
+    
+    // --- GODOT OVERRIDES ---
+    public override void _ExitTree()
+    {
         UnsubscribeFromEvents();
     }
     
     // --- EVENT HANDLERS ---
     private void OnWindupCompleted()
     {
+        CigStateMachine.WindupCompleted -= OnWindupCompleted;
         CigStateMachine.ChangeState(CigState.Inhale);
+    }
+
+    private void OnExhaleCompleted()
+    {
+        GD.Print($"PlayerCombatStateDrag: OnExhaleCompleted");
+        CigStateMachine.ExhaleCompleted -= OnExhaleCompleted;
+        GD.Print($"PlayerCOmbatStateDrag: OnExhaleCompleted finished");
+        CigStateMachine.ChangeState(CigState.Idle);
+        
     }
 
     private void OnTooMuchSmoke()
@@ -55,6 +65,7 @@ public partial class PlayerCombatStateDrag : PlayerCombatStateBase
     // --- INTERNAL LOGIC ---
     private void UnsubscribeFromEvents()
     {
-        
+        CigStateMachine.WindupCompleted -= OnWindupCompleted;
+        CigStateMachine.ExhaleCompleted -= OnExhaleCompleted;
     }
 }
