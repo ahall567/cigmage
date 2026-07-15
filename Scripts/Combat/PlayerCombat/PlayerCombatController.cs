@@ -9,14 +9,20 @@ namespace CigMage.Combat.PlayerCombat;
 public partial class PlayerCombatController : Node3D
 {
     private ManaComponent _manaComponent;
-    public ManaComponent ManaComponent => _manaComponent;
+    private HealthComponent _healthComponent;
     private SpellBase _spell;
+
+    public HealthComponent HealthComponent => _healthComponent;
+    public ManaComponent ManaComponent => _manaComponent;
+    public SpellBase Spell => _spell;
+    
     
     // --- GODOT OVERRIDES ---
     public override void _Ready()
     {
         _manaComponent = this.GetChildByType<ManaComponent>();
         _spell = this.GetChildByType<SpellBase>();
+        _healthComponent = this.GetChildByType<HealthComponent>();
 
         if (_spell != null)
         {
