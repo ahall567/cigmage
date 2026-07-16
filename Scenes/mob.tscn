@@ -27,7 +27,7 @@ mesh = SubResource("CapsuleMesh_h5js2")
 surface_material_override/0 = SubResource("StandardMaterial3D_u8nqw")
 
 [node name="Label3D" type="Label3D" parent="MeshInstance3D" unique_id=1011482105]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.51066315)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -0.58896005)
 text = "MOB"
 
 [node name="CombatHandler" type="Node" parent="." unique_id=1612105434]
@@ -47,3 +47,6 @@ metadata/_custom_type_script = "uid://d0s8gukj1746v"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CombatHandler/Hurtbox" unique_id=347461576]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.021484375, -0.5108836)
 shape = SubResource("CapsuleShape3D_h5js2")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=182822310]
+avoidance_enabled = true
