@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 namespace CigMage.Combat.PlayerCombat;
 
@@ -12,20 +11,17 @@ public partial class ManaComponent : Node
     public float CurrentValue
     {
         get => _currentValue;
-        set
+        private set
         {
             float clampedValue = Mathf.Clamp(value, 0, _maximumValue);
 
             if (_currentValue == clampedValue) return;
             _currentValue = clampedValue;
-                
-            ManaChanged?.Invoke(_currentValue, _maximumValue);
+            
+            EventBus.Instance.PublishManaValueChanged(_currentValue, _maximumValue);
             GD.Print($"Mana: {_currentValue}");
         }
     }
-    
-    // --- EVENTS ---
-    public event Action<float, float> ManaChanged;
     
     // --- GODOT OVERRIDES ---
     public override void _Ready()

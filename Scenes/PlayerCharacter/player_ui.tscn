@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://bo2qixpjdfybh"]
 
+[ext_resource type="Script" uid="uid://dtu5nmsgjuaux" path="res://Scripts/UI/ManaBar.cs" id="1_anga3"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g4stl"]
 bg_color = Color(0.0014789136, 0, 0.18290398, 1)
 border_width_left = 5
@@ -46,3 +48,4 @@ theme_override_styles/background = SubResource("StyleBoxFlat_g4stl")
 theme_override_styles/fill = SubResource("StyleBoxFlat_anga3")
 value = 50.0
 show_percentage = false
+script = ExtResource("1_anga3")
