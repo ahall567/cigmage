@@ -14,16 +14,12 @@ public partial class Player : CharacterBody3D
 	public override void _Ready()
 	{
 		_head = this.GetChildByType<PlayerHead>();
-		Input.MouseMode = Input.MouseModeEnum.Captured;
+		
 	}
 
 	public override void _UnhandledInput(InputEvent @event)
 	{
-		// Show the mouse when escape is pressed.
-		if (@event is InputEventKey { Keycode: Key.Escape })
-		{
-			Input.MouseMode = Input.MouseModeEnum.Visible;
-		}
+		
 	}
 
 	public override void _PhysicsProcess(double delta)

@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dg71jl6uuwxj6" path="res://Scenes/PlayerCharacter/player.tscn" id="5_5ukr8"]
 [ext_resource type="PackedScene" uid="uid://dy4xwfb4na8rk" path="res://Assets/Environment/stairs_wood.gltf" id="5_fo5ed"]
 [ext_resource type="PackedScene" uid="uid://br6su254b20v" path="res://Scenes/mob.tscn" id="6_5ukr8"]
+[ext_resource type="PackedScene" uid="uid://bo2qixpjdfybh" path="res://Scenes/PlayerCharacter/ui_manager.tscn" id="7_o06y3"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5ukr8"]
 
@@ -68,6 +69,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6011763, 1.2886155, 1.1805
 
 [node name="Mob" parent="." unique_id=69695702 instance=ExtResource("6_5ukr8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3348987, 1.0010003, -7.659795)
+
+[node name="UIManager" parent="." unique_id=1056439967 instance=ExtResource("7_o06y3")]
 
 [editable path="banner_shield_white2"]
 [editable path="stairs_wood2"]

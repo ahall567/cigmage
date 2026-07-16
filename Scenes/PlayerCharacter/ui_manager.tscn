@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://bo2qixpjdfybh"]
+
+[ext_resource type="Script" uid="uid://hh6oxssnxtlj" path="res://Scripts/UI/UIManager.cs" id="1_w6xil"]
+[ext_resource type="Script" uid="uid://dtu5nmsgjuaux" path="res://Scripts/UI/ManaBar.cs" id="2_ptl2n"]
+[ext_resource type="FontFile" uid="uid://ltpasjwx7l8v" path="res://Assets/Fonts/Wizard.ttf" id="3_ptl2n"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_w6xil"]
+font = ExtResource("3_ptl2n")
+font_size = 72
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g4stl"]
+bg_color = Color(0.0014789136, 0, 0.18290398, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_anga3"]
+bg_color = Color(0.05490196, 0.28235295, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="UIManager" type="Control" unique_id=1056439967]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_w6xil")
+
+[node name="PausePanel" type="Control" parent="." unique_id=143952577]
+process_mode = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(0.5, 0.5)
+
+[node name="Label" type="Label" parent="PausePanel" unique_id=184837481]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -40.5
+offset_right = 225.0
+offset_bottom = 40.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "PAUSED"
+label_settings = SubResource("LabelSettings_w6xil")
+
+[node name="PlayerUIPanel" type="Control" parent="." unique_id=1779639564]
+process_mode = 1
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ManaBar" type="ProgressBar" parent="PlayerUIPanel" unique_id=1197073500]
+custom_minimum_size = Vector2(350, 30)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.9
+anchor_right = 0.312
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 547.2
+offset_right = 352.52
+offset_bottom = 573.2
+theme_override_styles/background = SubResource("StyleBoxFlat_g4stl")
+theme_override_styles/fill = SubResource("StyleBoxFlat_anga3")
+value = 50.0
+show_percentage = false
+script = ExtResource("2_ptl2n")
