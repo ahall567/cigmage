@@ -18,8 +18,6 @@ public partial class PlayerCombatStateCast : PlayerCombatStateBase
     public override void Enter()
     {
         base.Enter();
-        // TODO: Move animation control to SpellState once models are moved to the SpellBase scene
-        PlayerCombatControllerParent.Animator.Play("Magic_spell");
         
         // Subscribe to state events
         SpellStateMachine.ChargeCompleted += OnChargeCompleted;
@@ -40,10 +38,6 @@ public partial class PlayerCombatStateCast : PlayerCombatStateBase
 
     public override void Exit()
     {
-        if (PlayerCombatControllerParent.Animator != null)
-        {
-            PlayerCombatControllerParent.Animator.Play("Relax_hands_idle");
-        }
         SpellStateMachine.ChangeState(SpellState.Recover);
         UnsubscribeFromEvents();
     }
@@ -65,7 +59,6 @@ public partial class PlayerCombatStateCast : PlayerCombatStateBase
 
     private void OnSpellCastFailed()
     {
-        SpellStateMachine.SpellCastFailed -= OnSpellCastFailed;
         SpellStateMachine.ChangeState(SpellState.Recover);
     }
     

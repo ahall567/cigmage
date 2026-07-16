@@ -8,27 +8,27 @@ namespace CigMage.Combat.PlayerCombat;
 [GlobalClass]
 public partial class PlayerCombatController : Node3D
 {
-    public AnimationPlayer Animator;
     private ManaComponent _manaComponent;
+    private HealthComponent _healthComponent;
     private SpellBase _spell;
-    [Export] public Label3D Cig;
+
+    public HealthComponent HealthComponent => _healthComponent;
+    public ManaComponent ManaComponent => _manaComponent;
+    public SpellBase Spell => _spell;
+    
     
     // --- GODOT OVERRIDES ---
     public override void _Ready()
     {
-        Cig = GetNode<Label3D>("Cig");
-        Animator = this.GetChildByType<AnimationPlayer>();
         _manaComponent = this.GetChildByType<ManaComponent>();
         _spell = this.GetChildByType<SpellBase>();
+        _healthComponent = this.GetChildByType<HealthComponent>();
 
         if (_spell != null)
         {
             _spell.SpellSpawned += OnSpellSpawned;
             InitChildren();
         }
-        
-        
-        Animator.Play("Relax_hands_idle");
     }
 
     public override void _ExitTree()
@@ -41,11 +41,7 @@ public partial class PlayerCombatController : Node3D
     {
         return _manaComponent.CurrentValue;
     }
-
-    public void RegenMana(float amount)
-    {
-        _manaComponent.Increase(amount);
-    }
+    
     
     // --- INTERNAL LOGIC ---
     private void InitChildren()
