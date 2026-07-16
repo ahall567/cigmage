@@ -16,13 +16,11 @@ public partial class ManaComponent : Node
         {
             float clampedValue = Mathf.Clamp(value, 0, _maximumValue);
 
-            if (_currentValue != clampedValue)
-            {
-                _currentValue = clampedValue;
+            if (_currentValue == clampedValue) return;
+            _currentValue = clampedValue;
                 
-                ManaChanged?.Invoke(_currentValue, _maximumValue);
-                GD.Print($"Mana: {_currentValue}");
-            }
+            ManaChanged?.Invoke(_currentValue, _maximumValue);
+            GD.Print($"Mana: {_currentValue}");
         }
     }
     

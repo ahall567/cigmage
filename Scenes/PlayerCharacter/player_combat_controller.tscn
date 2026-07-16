@@ -21,6 +21,7 @@
 [ext_resource type="Script" uid="uid://bomgx3yykhau2" path="res://Scripts/PlayerCharacter/Cig/CigStateInhale.cs" id="13_uf5cp"]
 [ext_resource type="Script" uid="uid://2f7qutscia6h" path="res://Scripts/PlayerCharacter/Cig/CigStateExhale.cs" id="14_4bprf"]
 [ext_resource type="Script" uid="uid://c0rbpj6bfyjxy" path="res://Scripts/PlayerCharacter/Cig/CigStateLight.cs" id="15_rt5rh"]
+[ext_resource type="Script" uid="uid://cx7f3msraa047" path="res://Scripts/Combat/HealthComponent.cs" id="22_uf5cp"]
 
 [node name="PlayerCombatController" type="Node3D" unique_id=977804158]
 script = ExtResource("1_7f71v")
@@ -115,3 +116,8 @@ metadata/_custom_type_script = "uid://dmnb7esl3wdy0"
 [node name="SpellStateRecover" type="Node" parent="PlayerCombatStateMachine/PlayerCombatStateCast/SpellStateMachine" unique_id=584367694]
 script = ExtResource("12_3bt8q")
 metadata/_custom_type_script = "uid://b2lc0n6luj72"
+
+[node name="HealthComponent" type="Node" parent="." unique_id=171115666]
+script = ExtResource("22_uf5cp")
+_maxHealth = 100.0
+metadata/_custom_type_script = "uid://cx7f3msraa047"
