@@ -40,6 +40,7 @@ public partial class UIManager : Control
 		Input.MouseMode = Input.MouseModeEnum.Visible;
 		_pausePanel.Show();
 		GetTree().Paused = true;
+		EventBus.Instance.PublishGamePaused(true);
 	}
 
 	private void Unpause()
@@ -48,5 +49,6 @@ public partial class UIManager : Control
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 		_playerUIPanel.Show();
 		GetTree().Paused = false;
+		EventBus.Instance.PublishGamePaused(false);
 	}
 }
