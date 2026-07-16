@@ -38,7 +38,7 @@ _spellData = ExtResource("3_ath3e")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22, 1.64, 1.39)
 script = ExtResource("5_3bt8q")
 _playerCombatController = NodePath("..")
-_refillRate = 5.0
+_refillRate = 10.0
 
 [node name="ManaComponent" type="Node" parent="." unique_id=1099135381]
 script = ExtResource("7_8b4i8")
