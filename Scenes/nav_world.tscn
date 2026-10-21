@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://7pqttxidybie"]
 
+[ext_resource type="PackedScene" uid="uid://b2qu2h2lvw1f3" path="res://Scenes/mob_spawn_controller.tscn" id="3_uy5l6"]
+[ext_resource type="PackedScene" uid="uid://br6su254b20v" path="res://Scenes/mob.tscn" id="4_lu27o"]
 [ext_resource type="PackedScene" uid="uid://dg71jl6uuwxj6" path="res://Scenes/PlayerCharacter/player.tscn" id="5_wbqnv"]
-[ext_resource type="PackedScene" uid="uid://br6su254b20v" path="res://Scenes/mob.tscn" id="6_t1535"]
 [ext_resource type="PackedScene" uid="uid://bo2qixpjdfybh" path="res://Scenes/PlayerCharacter/ui_manager.tscn" id="7_t1535"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_a4ac1"]
@@ -51,12 +52,12 @@ transform = Transform3D(0.58070296, 0, 0.8141155, 0, 1, 0, -0.8141155, 0, 0.5807
 use_collision = true
 size = Vector3(11.26, 2.04, 0.37)
 
-[node name="Mob" parent="." unique_id=69695702 node_paths=PackedStringArray("_player") instance=ExtResource("6_t1535")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-_player = NodePath("../Player")
-_movementSpeed = 3.0
-
 [node name="Player" parent="." unique_id=704931381 instance=ExtResource("5_wbqnv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1120346, 1.5290785, 0)
 
 [node name="UIManager" parent="." unique_id=1056439967 instance=ExtResource("7_t1535")]
+
+[node name="MobSpawnController" parent="." unique_id=1381465356 node_paths=PackedStringArray("PlayerReference") instance=ExtResource("3_uy5l6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25900388, 11.645174)
+PlayerReference = NodePath("../Player")
+mobScene = ExtResource("4_lu27o")

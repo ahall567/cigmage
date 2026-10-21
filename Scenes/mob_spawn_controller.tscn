@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b2qu2h2lvw1f3"]
+
+[ext_resource type="Script" uid="uid://cw136y5f0ify2" path="res://MobSpawnController.cs" id="1_b53va"]
+
+[node name="MobSpawnController" type="Node3D" unique_id=1381465356]
+script = ExtResource("1_b53va")

@@ -61,6 +61,13 @@ public partial class MobController : CharacterBody3D
     {
         UnsubscribeFromEvents();
     }
+    
+    // --- PUBLIC API ---
+    public void Init(Player player)
+    {
+        _player = player;
+        _movementSpeed = 3;
+    }
 
     // --- INTERNAL LOGIC ---
     private void SubscribeToEvents()
