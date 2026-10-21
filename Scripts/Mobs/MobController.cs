@@ -83,6 +83,7 @@ public partial class MobController : CharacterBody3D
     // --- EVENT HANDLERS ---
     private void OnHealthZero()
     {
+        // TODO: Figure out why all mobs are despawning at the same time
         QueueFree();
     }
 }
