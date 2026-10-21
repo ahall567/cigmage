@@ -1,10 +1,11 @@
 using Godot;
-using System;
 
 namespace CigMage.UI;
 
 public partial class ManaBar : ProgressBar
 {
+	private Tween _tween;
+	
 	// --- GODOT OVERRIDES ---
 	public override void _Ready()
 	{
@@ -21,6 +22,12 @@ public partial class ManaBar : ProgressBar
 	private void OnManaValueChanged(float newValue, float maxValue)
 	{
 		float newPercentage = (newValue / maxValue) * 100;
-		Value = newPercentage;
+
+		if (_tween != null)
+		{
+			_tween.Kill();
+		}
+		_tween = CreateTween();
+		_tween.TweenProperty(this, "value", newPercentage, 0.25f);
 	}
 }
