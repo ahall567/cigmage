@@ -17,6 +17,7 @@ public partial class PlayerHead : Node3D
 
     public override void _UnhandledInput(InputEvent @event)
     {
+        // Camera rotation
         if (@event is InputEventMouseMotion m) {
             RotateY(-m.Relative.X * CamSensitivity);
             _cam.RotateX(-m.Relative.Y * CamSensitivity);

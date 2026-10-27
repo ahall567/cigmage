@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 namespace CigMage.Combat;
 
+// Hitbox is used by attacks/spells to detect hurtboxes and apply damage/effects to them
 [GlobalClass]
 public partial class HitboxComponent : Area3D
 {
@@ -22,7 +23,11 @@ public partial class HitboxComponent : Area3D
 
         foreach (Area3D area in overlappingAreas)
         {
-            if (area is HurtboxComponent hurtbox) hurtboxes.Add(hurtbox);
+            if (area is HurtboxComponent hurtbox)
+            {
+                hurtboxes.Add(hurtbox);
+                GD.Print($"HitboxComponent: Hurtbox detected - {hurtbox.Name}");
+            }
         }
 
         if (hurtboxes.Count > 0 && _isActive)

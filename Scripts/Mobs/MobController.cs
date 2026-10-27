@@ -63,6 +63,8 @@ public partial class MobController : CharacterBody3D
     }
     
     // --- PUBLIC API ---
+    
+    // Temporary logic for Player reference injection - find a better way to do this later
     public void Init(Player player)
     {
         _player = player;
@@ -84,6 +86,7 @@ public partial class MobController : CharacterBody3D
     private void OnHealthZero()
     {
         // TODO: Figure out why all mobs are despawning at the same time
+        GD.Print("OnHealthZero() Called");
         QueueFree();
     }
 }
