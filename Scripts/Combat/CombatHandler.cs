@@ -11,9 +11,9 @@ public partial class CombatHandler : Node
     // TODO: Unchild Hurtbox/Hitbox from CombatHandler in scenetree. They need to be children of a node with a transform.
     
     // --- COMPONENTS ---
-    private HitboxComponent _hitbox;
-    private HurtboxComponent _hurtbox;
-    private HealthComponent _health;
+    [Export] private HitboxComponent _hitbox;
+    [Export] private HurtboxComponent _hurtbox;
+    [Export] private HealthComponent _health;
     
     // --- EVENTS ---
     public event Action<float> DamageTaken;
@@ -28,7 +28,6 @@ public partial class CombatHandler : Node
     // --- GODOT OVERRIDES ---
     public override void _Ready()
     {
-        GetNodeReferences();
         SubscribeToEvents();
         if (_hurtbox != null) _hurtbox.SetActive(true);
     }
@@ -54,12 +53,6 @@ public partial class CombatHandler : Node
     }
     
     // --- INTERNAL LOGIC ---
-    private void GetNodeReferences()
-    {
-        _hitbox = this.GetChildByType<HitboxComponent>();
-        _hurtbox = this.GetChildByType<HurtboxComponent>();
-        _health = this.GetChildByType<HealthComponent>();
-    }
     private void SubscribeToEvents()
     {
         if (_hitbox != null) _hitbox.HurtboxDetected += OnHurtboxDetected;

@@ -27,15 +27,16 @@ mesh = SubResource("SphereMesh_xi7wk")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=482641591]
 shape = SubResource("SphereShape3D_0mxqg")
 
-[node name="CombatHandler" type="Node" parent="." unique_id=635863117]
+[node name="CombatHandler" type="Node" parent="." unique_id=635863117 node_paths=PackedStringArray("_hitbox")]
 script = ExtResource("2_wi2lr")
+_hitbox = NodePath("../Hitbox")
 metadata/_custom_type_script = "uid://bdl15hgmpvkub"
 
-[node name="Hitbox" type="Area3D" parent="CombatHandler" unique_id=1235754008]
+[node name="Hitbox" type="Area3D" parent="." unique_id=1235754008]
 script = ExtResource("3_60ydo")
 metadata/_custom_type_script = "uid://cmcy30iuevh6v"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CombatHandler/Hitbox" unique_id=1151721130]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=1151721130]
 transform = Transform3D(0.6449999, 0, 0, 0, 0.6449999, 0, 0, 0, 0.645, 0, 0, 0)
 shape = SubResource("SphereShape3D_toovh")
 debug_color = Color(0.699475, 0.0435972, 2.8878452e-07, 0.41960785)
