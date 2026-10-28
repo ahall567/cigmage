@@ -8,8 +8,6 @@ namespace CigMage.Combat;
 [GlobalClass]
 public partial class CombatHandler : Node
 {
-    // TODO: Unchild Hurtbox/Hitbox from CombatHandler in scenetree. They need to be children of a node with a transform.
-    
     // --- COMPONENTS ---
     [Export] private HitboxComponent _hitbox;
     [Export] private HurtboxComponent _hurtbox;
