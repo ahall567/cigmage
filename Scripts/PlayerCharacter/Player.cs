@@ -39,7 +39,6 @@ public partial class Player : CharacterBody3D
 		}
 
 		// Get the input direction and handle the movement/deceleration.
-		// As good practice, you should replace UI actions with custom gameplay actions.
 		Vector2 inputDir = Input.GetVector("move_left", "move_right", "move_forward", "move_backwards");
 		// Re-project the direction to the head's transform. This makes "forward" wherever the camera is looking.
 		Vector3 direction = (_head.GlobalTransform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();

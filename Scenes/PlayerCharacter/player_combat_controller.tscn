@@ -25,6 +25,10 @@
 [node name="PlayerCombatController" type="Node3D" unique_id=977804158]
 script = ExtResource("1_7f71v")
 
+[node name="CombatStateLabel" type="Label3D" parent="." unique_id=1140190665]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 2.5, 2)
+text = "Test"
+
 [node name="CigBase" type="Node3D" parent="." unique_id=283168885 node_paths=PackedStringArray("_playerCombatController")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.5, 2)
 script = ExtResource("5_3bt8q")
@@ -49,6 +53,11 @@ text = "SpellState"
 script = ExtResource("7_8b4i8")
 _maximumValue = 100.0
 metadata/_custom_type_script = "uid://bu00kmn45x8xm"
+
+[node name="HealthComponent" type="Node" parent="." unique_id=171115666]
+script = ExtResource("22_uf5cp")
+_maxHealth = 100.0
+metadata/_custom_type_script = "uid://cx7f3msraa047"
 
 [node name="PlayerCombatStateMachine" type="Node" parent="." unique_id=2010182103 node_paths=PackedStringArray("Parent")]
 script = ExtResource("2_gp34t")
@@ -129,12 +138,3 @@ metadata/_custom_type_script = "uid://dmnb7esl3wdy0"
 script = ExtResource("12_3bt8q")
 Parent = NodePath("../../../../SpellBase")
 metadata/_custom_type_script = "uid://b2lc0n6luj72"
-
-[node name="HealthComponent" type="Node" parent="." unique_id=171115666]
-script = ExtResource("22_uf5cp")
-_maxHealth = 100.0
-metadata/_custom_type_script = "uid://cx7f3msraa047"
-
-[node name="CombatStateLabel" type="Label3D" parent="." unique_id=1140190665]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 2.5, 2)
-text = "Test"
