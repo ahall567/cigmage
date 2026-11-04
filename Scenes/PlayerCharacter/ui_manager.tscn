@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://hh6oxssnxtlj" path="res://Scripts/UI/UIManager.cs" id="1_w6xil"]
 [ext_resource type="Script" uid="uid://dtu5nmsgjuaux" path="res://Scripts/UI/ManaBar.cs" id="2_ptl2n"]
 [ext_resource type="FontFile" uid="uid://ltpasjwx7l8v" path="res://Assets/Fonts/Wizard.ttf" id="3_ptl2n"]
+[ext_resource type="Script" uid="uid://dpaitujr5ppla" path="res://Scripts/UI/HealthBar.cs" id="4_j7mnt"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_w6xil"]
 font = ExtResource("3_ptl2n")
@@ -24,6 +25,30 @@ corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_anga3"]
 bg_color = Color(0.05490196, 0.28235295, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ptl2n"]
+bg_color = Color(0.32941177, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j7mnt"]
+bg_color = Color(0.7254902, 0, 0, 1)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
@@ -99,3 +124,15 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_anga3")
 value = 50.0
 show_percentage = false
 script = ExtResource("2_ptl2n")
+
+[node name="HealthBar" type="ProgressBar" parent="PlayerUIPanel" unique_id=9133409]
+custom_minimum_size = Vector2(350, 30)
+layout_mode = 1
+anchors_preset = -1
+offset_right = 350.0
+offset_bottom = 30.0
+theme_override_styles/background = SubResource("StyleBoxFlat_ptl2n")
+theme_override_styles/fill = SubResource("StyleBoxFlat_j7mnt")
+value = 50.0
+show_percentage = false
+script = ExtResource("4_j7mnt")
