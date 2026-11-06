@@ -14,7 +14,7 @@ public partial class ProjectileEntity : RigidBody3D
 	public override void _Ready()
 	{
 		_combatHandler = this.GetChildByType<CombatHandler>();
-		_combatHandler.SetAttacking(false);
+		_combatHandler.SetAttackingStatus(false);
 		Launch();
 	}
 
@@ -26,7 +26,7 @@ public partial class ProjectileEntity : RigidBody3D
 
 	private void ActivateAttack()
 	{
-		_combatHandler.SetAttacking(true);
+		_combatHandler.SetAttackingStatus(true);
 	}
 
 	// --- EVENT HANDLERS ---

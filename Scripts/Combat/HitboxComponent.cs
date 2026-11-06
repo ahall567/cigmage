@@ -18,6 +18,7 @@ public partial class HitboxComponent : Area3D
 
     public void GetHurtboxes()
     {
+        // TODO: Add logic for hurtbox filtering
         List<HurtboxComponent> hurtboxes = new();
         Godot.Collections.Array<Area3D> overlappingAreas = GetOverlappingAreas();
 

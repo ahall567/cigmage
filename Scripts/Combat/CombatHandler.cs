@@ -35,7 +35,28 @@ public partial class CombatHandler : Node
     }
 
     // --- PUBLIC API ---
-    public void SetAttacking(bool isAttacking)
+    // Toggle attacking status
+    public void SetAttackingStatus()
+    {
+        if (_hitbox != null)
+        {
+            switch (_isAttacking)
+            {
+                case true:
+                    _isAttacking = false;
+                    _hitbox.SetActive(false);
+                    break;
+                case false:
+                    _hitbox.SetActive(true);
+                    _isAttacking = true;
+                    _hitbox.CallDeferred(nameof(_hitbox.GetHurtboxes));
+                    break;
+            }
+        }
+    }
+    
+    // Explicitly set attacking status
+    public void SetAttackingStatus(bool isAttacking)
     {
         if (_hitbox != null)
         {
@@ -46,6 +67,15 @@ public partial class CombatHandler : Node
             {
                 _hitbox.CallDeferred(nameof(_hitbox.GetHurtboxes));
             }
+        }
+    }
+
+    public void ImpulseAttack()
+    {
+        if (_hitbox != null)
+        {
+            SetAttackingStatus(true);
+            SetAttackingStatus(false);
         }
     }
     

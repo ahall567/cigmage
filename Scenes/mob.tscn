@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://d0s8gukj1746v" path="res://Scripts/Combat/HurtboxComponent.cs" id="1_h5js2"]
 [ext_resource type="Script" uid="uid://8q6b8nro0rqc" path="res://Scripts/Mobs/MobController.cs" id="1_ypr7k"]
 [ext_resource type="Script" uid="uid://cx7f3msraa047" path="res://Scripts/Combat/HealthComponent.cs" id="2_u8nqw"]
+[ext_resource type="Script" uid="uid://cmcy30iuevh6v" path="res://Scripts/Combat/HitboxComponent.cs" id="5_frlhd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_04bb1"]
 
@@ -15,6 +16,8 @@ albedo_color = Color(1, 0, 0, 1)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h5js2"]
 radius = 0.53027344
 height = 2.0429688
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7rqy1"]
 
 [node name="Mob" type="CharacterBody3D" unique_id=69695702]
 script = ExtResource("1_ypr7k")
@@ -30,8 +33,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_u8nqw")
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -0.58896005)
 text = "MOB"
 
-[node name="CombatHandler" type="Node" parent="." unique_id=1612105434 node_paths=PackedStringArray("_hurtbox", "_health")]
+[node name="CombatHandler" type="Node" parent="." unique_id=1612105434 node_paths=PackedStringArray("_hitbox", "_hurtbox", "_health")]
 script = ExtResource("1_b44se")
+_hitbox = NodePath("../HitboxComponent")
 _hurtbox = NodePath("../Hurtbox")
 _health = NodePath("HealthComponent")
 metadata/_custom_type_script = "uid://bdl15hgmpvkub"
@@ -54,3 +58,11 @@ metadata/_custom_type_script = "uid://d0s8gukj1746v"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.021484375, -0.5108836)
 shape = SubResource("CapsuleShape3D_h5js2")
 debug_color = Color(0.79815054, 0.34314454, 0.63764983, 0.42)
+
+[node name="HitboxComponent" type="Area3D" parent="." unique_id=777765025]
+script = ExtResource("5_frlhd")
+metadata/_custom_type_script = "uid://cmcy30iuevh6v"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent" unique_id=650228169]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.23526204)
+shape = SubResource("CapsuleShape3D_7rqy1")

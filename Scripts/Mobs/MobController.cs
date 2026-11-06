@@ -7,9 +7,11 @@ namespace CigMage.Mobs;
 
 public partial class MobController : CharacterBody3D
 {
-    // TODO: Inject this upon instantiation
-    [Export] private Player _player;
     [Export] private float _movementSpeed;
+    
+    private Player _player;
+
+    private Timer _attackCooldown;
     
     private CombatHandler _combatHandler;
     private NavigationAgent3D _navAgent;
@@ -19,6 +21,14 @@ public partial class MobController : CharacterBody3D
     {
         _combatHandler = this.GetChildByType<CombatHandler>();
         _navAgent = this.GetChildByType<NavigationAgent3D>();
+
+        _attackCooldown = new Timer();
+        _attackCooldown.WaitTime = 0.25f; // TODO: Un-magic number this
+        _attackCooldown.OneShot = true;
+        _attackCooldown.Timeout += OnAttackCooldownExpired;
+        AddChild(_attackCooldown);
+        _attackCooldown.Start();
+        
         SubscribeToEvents();
     }
 
@@ -83,6 +93,13 @@ public partial class MobController : CharacterBody3D
     }
     
     // --- EVENT HANDLERS ---
+    private void OnAttackCooldownExpired()
+    {
+        GD.Print($"MobController: Attacking");
+        _combatHandler.ImpulseAttack();
+        _attackCooldown.Start();
+    }
+    
     private void OnHealthZero()
     {
         QueueFree();
