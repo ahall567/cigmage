@@ -1,9 +1,34 @@
 [gd_scene format=3 uid="uid://dg71jl6uuwxj6"]
 
 [ext_resource type="Script" uid="uid://xn0ksj8ifv81" path="res://Scripts/PlayerCharacter/Player.cs" id="1_v0iea"]
-[ext_resource type="PackedScene" uid="uid://b8883pxtdtcxw" path="res://Scenes/PlayerCharacter/player_head.tscn" id="2_o8rar"]
+[ext_resource type="Script" uid="uid://cnl88a8icya1m" path="res://Scripts/PlayerCharacter/PlayerHead.cs" id="2_hfuwt"]
+[ext_resource type="Script" uid="uid://bh2m77wqd8nqi" path="res://Scripts/Combat/PlayerCombat/PlayerCombatController.cs" id="2_jfyvd"]
+[ext_resource type="Script" uid="uid://bf5jqhjmnyeey" path="res://Scripts/PlayerCharacter/Cig/CigBase.cs" id="3_hfuwt"]
+[ext_resource type="Script" uid="uid://b51qyd0lwgha4" path="res://Scripts/Spells/SpellBase.cs" id="4_pd7d3"]
+[ext_resource type="Resource" uid="uid://dy16w7g8yi02q" path="res://Scripts/Spells/Fireball/fireball_data.tres" id="5_dvowb"]
+[ext_resource type="Script" uid="uid://bumk1xf16apsp" path="res://Scripts/Combat/PlayerCombat/StateMachine/PlayerCombatStateMachine.cs" id="6_ey6oa"]
+[ext_resource type="Script" uid="uid://bhpfc4pbvd41r" path="res://Scripts/Combat/PlayerCombat/StateMachine/PlayerCombatStateIdle.cs" id="7_7s8nq"]
+[ext_resource type="Script" uid="uid://cxgpsmcidwjct" path="res://Scripts/Combat/PlayerCombat/StateMachine/PlayerCombatStateDrag.cs" id="8_lmiun"]
+[ext_resource type="Script" uid="uid://b04sktq4scuu5" path="res://Scripts/PlayerCharacter/Cig/CigStateMachine.cs" id="9_4jdtt"]
+[ext_resource type="Script" uid="uid://c812hfv5ieds7" path="res://Scripts/PlayerCharacter/Cig/CigStateIdle.cs" id="10_eit0l"]
+[ext_resource type="Script" uid="uid://cgvyflw3i2p0h" path="res://Scripts/PlayerCharacter/Cig/CigStateWindup.cs" id="11_aoq7f"]
+[ext_resource type="Script" uid="uid://bomgx3yykhau2" path="res://Scripts/PlayerCharacter/Cig/CigStateInhale.cs" id="12_lf857"]
+[ext_resource type="Script" uid="uid://2f7qutscia6h" path="res://Scripts/PlayerCharacter/Cig/CigStateExhale.cs" id="13_bdn68"]
+[ext_resource type="Script" uid="uid://c0rbpj6bfyjxy" path="res://Scripts/PlayerCharacter/Cig/CigStateLight.cs" id="14_b84mw"]
+[ext_resource type="Script" uid="uid://strq8n4iglmv" path="res://Scripts/Combat/PlayerCombat/StateMachine/PlayerCombatStateCast.cs" id="15_43a02"]
+[ext_resource type="Script" uid="uid://bnvechw3byfbs" path="res://Scripts/Spells/SpellStateMachine/SpellStateMachine.cs" id="16_q454p"]
+[ext_resource type="Script" uid="uid://b5kx6lu7s7tkl" path="res://Scripts/Spells/SpellStateMachine/SpellStateIdle.cs" id="17_4l3di"]
+[ext_resource type="Script" uid="uid://dqvxcyn4y0xc3" path="res://Scripts/Spells/SpellStateMachine/SpellStateCharge.cs" id="18_axlhl"]
+[ext_resource type="Script" uid="uid://dmnb7esl3wdy0" path="res://Scripts/Spells/SpellStateMachine/SpellStateCast.cs" id="19_kba71"]
+[ext_resource type="Script" uid="uid://b2lc0n6luj72" path="res://Scripts/Spells/SpellStateMachine/SpellStateRecover.cs" id="20_j8u5n"]
+[ext_resource type="Script" uid="uid://bdl15hgmpvkub" path="res://Scripts/Combat/CombatHandler.cs" id="21_3nu1x"]
+[ext_resource type="Script" uid="uid://bu00kmn45x8xm" path="res://Scripts/Combat/PlayerCombat/ManaComponent.cs" id="22_w8k4c"]
+[ext_resource type="Script" uid="uid://cx7f3msraa047" path="res://Scripts/Combat/HealthComponent.cs" id="23_a3coa"]
+[ext_resource type="Script" uid="uid://d0s8gukj1746v" path="res://Scripts/Combat/HurtboxComponent.cs" id="24_ij8nk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f60y1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e3o0i"]
 
 [node name="Player" type="CharacterBody3D" unique_id=704931381]
 script = ExtResource("1_v0iea")
@@ -11,5 +36,130 @@ script = ExtResource("1_v0iea")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=462499662]
 shape = SubResource("CapsuleShape3D_f60y1")
 
-[node name="PlayerHead" parent="." unique_id=372473227 instance=ExtResource("2_o8rar")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6443217, 0)
+[node name="PlayerHead" type="Node3D" parent="." unique_id=962404151]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68116283, -0.1503849)
+script = ExtResource("2_hfuwt")
+
+[node name="Camera3D" type="Camera3D" parent="PlayerHead" unique_id=1631542277]
+
+[node name="PlayerCombatController" type="Node3D" parent="PlayerHead/Camera3D" unique_id=183702795]
+script = ExtResource("2_jfyvd")
+
+[node name="CombatStateLabel" type="Label3D" parent="PlayerHead/Camera3D/PlayerCombatController" unique_id=1302203148]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3861618, -1.2030215)
+text = "Test"
+
+[node name="CigBase" type="Node3D" parent="PlayerHead/Camera3D/PlayerCombatController" unique_id=1356884245 node_paths=PackedStringArray("_playerCombatController")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -2)
+script = ExtResource("3_hfuwt")
+_playerCombatController = NodePath("..")
+_refillRate = 10.0
+
+[node name="CigStateLabel" type="Label3D" parent="PlayerHead/Camera3D/PlayerCombatController/CigBase" unique_id=1063308648]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
+text = "CigState"
+
+[node name="SpellBase" type="Node3D" parent="PlayerHead/Camera3D/PlayerCombatController" unique_id=617709902 node_paths=PackedStringArray("_combatController")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 1.5, 0, -2)
+script = ExtResource("4_pd7d3")
+_combatController = NodePath("..")
+_spellData = ExtResource("5_dvowb")
+
+[node name="SpellStateLabel" type="Label3D" parent="PlayerHead/Camera3D/PlayerCombatController/SpellBase" unique_id=899481416]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+text = "SpellState"
+
+[node name="PlayerCombatStateMachine" type="Node" parent="PlayerHead/Camera3D/PlayerCombatController" unique_id=988712418 node_paths=PackedStringArray("Parent")]
+script = ExtResource("6_ey6oa")
+Parent = NodePath("..")
+metadata/_custom_type_script = "uid://bumk1xf16apsp"
+
+[node name="PlayerCombatStateIdle" type="Node" parent="PlayerHead/Camera3D/PlayerCombatController/PlayerCombatStateMachine" unique_id=1740667243 node_paths=PackedStringArray("StateLabel", "Parent")]
+script = ExtResource("7_7s8nq")
+StateLabel = NodePath("../../CombatStateLabel")
+Parent = NodePath("../..")
+metadata/_custom_type_script = "uid://bhpfc4pbvd41r"
+
+[node name="PlayerCombatStateDrag" type="Node" parent="PlayerHead/Camera3D/PlayerCombatController/PlayerCombatStateMachine" unique_id=910520187 node_paths=PackedStringArray("StateLabel", "Parent")]
+script = ExtResource("8_lmiun")
+_refillRate = 20.0
+StateLabel = NodePath("../../CombatStateLabel")
+Parent = NodePath("../..")
+metadata/_custom_type_script = "uid://cxgpsmcidwjct"
+
+[node name="CigStateMachine" type="Node" parent="PlayerHead/Camera3D/PlayerCombatController/PlayerCombatStateMachine/PlayerCombatStateDrag" unique_id=296432174 node_paths=PackedStringArray("Parent")]
+script = ExtResource("9_4jdtt")
+Parent = NodePath("../../../CigBase")
+metadata/_custom_type_script = "uid://b04sktq4scuu5"
+
+[node name="CigStateIdle" type="Node" parent="PlayerHead/Camera3D/PlayerCombatController/PlayerCombatStateMachine/PlayerCombatStateDrag/CigStateMachine" unique_id=1959464553]
+script = ExtResource("10_eit0l")
+metadata/_custom_type_script = "uid://c812hfv5ieds7"
+
+[node name="CigStateWindup" type="Node" parent="PlayerHead/Camera3D/PlayerCombatController/PlayerCombatStateMachine/PlayerCombatStateDrag/CigStateMachine" unique_id=242906112]
+script = ExtResource("11_aoq7f")
+metadata/_custom_type_script = "uid://cgvyflw3i2p0h"
+
+[node name="CigStateInhale" type="Node" parent="PlayerHead/Camera3D/PlayerCombatController/PlayerCombatStateMachine/PlayerCombatStateDrag/CigStateMachine" unique_id=149363798]
+script = ExtResource("12_lf857")
+metadata/_custom_type_script = "uid://bomgx3yykhau2"
+
+[node name="CigStateExhale" type="Node" parent="PlayerHead/Camera3D/PlayerCombatController/PlayerCombatStateMachine/PlayerCombatStateDrag/CigStateMachine" unique_id=190583618]
+script = ExtResource("13_bdn68")
+metadata/_custom_type_script = "uid://2f7qutscia6h"
+
+[node name="CigStateLight" type="Node" parent="PlayerHead/Camera3D/PlayerCombatController/PlayerCombatStateMachine/PlayerCombatStateDrag/CigStateMachine" unique_id=1071487211]
+script = ExtResource("14_b84mw")
+metadata/_custom_type_script = "uid://c0rbpj6bfyjxy"
+
+[node name="PlayerCombatStateCast" type="Node" parent="PlayerHead/Camera3D/PlayerCombatController/PlayerCombatStateMachine" unique_id=774197150 node_paths=PackedStringArray("StateLabel", "Parent")]
+script = ExtResource("15_43a02")
+StateLabel = NodePath("../../CombatStateLabel")
+Parent = NodePath("../..")
+metadata/_custom_type_script = "uid://strq8n4iglmv"
+
+[node name="SpellStateMachine" type="Node" parent="PlayerHead/Camera3D/PlayerCombatController/PlayerCombatStateMachine/PlayerCombatStateCast" unique_id=760551194 node_paths=PackedStringArray("Parent")]
+script = ExtResource("16_q454p")
+Parent = NodePath("../../../SpellBase")
+metadata/_custom_type_script = "uid://bnvechw3byfbs"
+
+[node name="SpellStateIdle" type="Node" parent="PlayerHead/Camera3D/PlayerCombatController/PlayerCombatStateMachine/PlayerCombatStateCast/SpellStateMachine" unique_id=327677638]
+script = ExtResource("17_4l3di")
+metadata/_custom_type_script = "uid://b5kx6lu7s7tkl"
+
+[node name="SpellStateCharge" type="Node" parent="PlayerHead/Camera3D/PlayerCombatController/PlayerCombatStateMachine/PlayerCombatStateCast/SpellStateMachine" unique_id=2109288050]
+script = ExtResource("18_axlhl")
+metadata/_custom_type_script = "uid://dqvxcyn4y0xc3"
+
+[node name="SpellStateCast" type="Node" parent="PlayerHead/Camera3D/PlayerCombatController/PlayerCombatStateMachine/PlayerCombatStateCast/SpellStateMachine" unique_id=1474113810]
+script = ExtResource("19_kba71")
+_castInterval = 0.25
+metadata/_custom_type_script = "uid://dmnb7esl3wdy0"
+
+[node name="SpellStateRecover" type="Node" parent="PlayerHead/Camera3D/PlayerCombatController/PlayerCombatStateMachine/PlayerCombatStateCast/SpellStateMachine" unique_id=545518898]
+script = ExtResource("20_j8u5n")
+metadata/_custom_type_script = "uid://b2lc0n6luj72"
+
+[node name="CombatHandler" type="Node" parent="PlayerHead/Camera3D/PlayerCombatController" unique_id=978138111 node_paths=PackedStringArray("_hurtbox", "_health")]
+script = ExtResource("21_3nu1x")
+_hurtbox = NodePath("../../../../HurtboxComponent")
+_health = NodePath("HealthComponent")
+metadata/_custom_type_script = "uid://bdl15hgmpvkub"
+
+[node name="ManaComponent" type="Node" parent="PlayerHead/Camera3D/PlayerCombatController/CombatHandler" unique_id=1993299728]
+script = ExtResource("22_w8k4c")
+_maximumValue = 100.0
+metadata/_custom_type_script = "uid://bu00kmn45x8xm"
+
+[node name="HealthComponent" type="Node" parent="PlayerHead/Camera3D/PlayerCombatController/CombatHandler" unique_id=905082255]
+script = ExtResource("23_a3coa")
+_maxHealth = 100.0
+metadata/_custom_type_script = "uid://cx7f3msraa047"
+
+[node name="HurtboxComponent" type="Area3D" parent="." unique_id=740711296]
+script = ExtResource("24_ij8nk")
+metadata/_custom_type_script = "uid://d0s8gukj1746v"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtboxComponent" unique_id=1447893352]
+shape = SubResource("CapsuleShape3D_e3o0i")
+debug_color = Color(0.6392157, 0, 0, 0.41960785)
