@@ -100,7 +100,6 @@ public partial class CombatHandler : Node
 
     private void OnHealthZero()
     {
-        GD.Print($"CombatHandler - OnHealthZero called");
         HealthZero?.Invoke();
     }
 }

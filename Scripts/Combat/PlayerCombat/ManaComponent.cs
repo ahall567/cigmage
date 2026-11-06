@@ -19,7 +19,6 @@ public partial class ManaComponent : Node
             _currentValue = clampedValue;
             
             EventBus.Instance.PublishManaValueChanged(_currentValue, _maximumValue);
-            GD.Print($"Mana: {_currentValue}");
         }
     }
     
