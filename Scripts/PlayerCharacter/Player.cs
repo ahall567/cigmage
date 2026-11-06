@@ -3,6 +3,7 @@ using CigMage.Extensions;
 
 namespace CigMage.PlayerCharacter;
 
+// TODO: Consolidate player into a single scene
 public partial class Player : CharacterBody3D
 {
 	private float _speed = 5.0f;

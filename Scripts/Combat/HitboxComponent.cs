@@ -27,7 +27,6 @@ public partial class HitboxComponent : Area3D
             if (area is HurtboxComponent hurtbox)
             {
                 hurtboxes.Add(hurtbox);
-                GD.Print($"HitboxComponent: Hurtbox detected - {hurtbox.Name}");
             }
         }
 

@@ -104,7 +104,11 @@ public partial class CombatHandler : Node
     {
         foreach (HurtboxComponent hurtbox in detectedHurtboxes)
         {
-            hurtbox.AcceptPayload(BuildPayload());
+            GD.Print($"CombatHandler: detects it's own hurtbox: {hurtbox == _hurtbox}");
+            if (hurtbox != _hurtbox)
+            {
+                hurtbox.AcceptPayload(BuildPayload());
+            }
         }
     }
 
