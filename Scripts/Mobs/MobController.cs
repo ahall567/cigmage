@@ -95,7 +95,6 @@ public partial class MobController : CharacterBody3D
     // --- EVENT HANDLERS ---
     private void OnAttackCooldownExpired()
     {
-        GD.Print($"MobController: Attacking");
         _combatHandler.ImpulseAttack();
         _attackCooldown.Start();
     }

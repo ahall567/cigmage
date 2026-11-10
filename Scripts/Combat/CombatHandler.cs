@@ -7,6 +7,9 @@ namespace CigMage.Combat;
 [GlobalClass]
 public partial class CombatHandler : Node
 {
+    // --- TEST ---
+    [Export] private String _debugName;
+    
     // --- COMPONENTS ---
     [Export] private HitboxComponent _hitbox;
     [Export] private HurtboxComponent _hurtbox;
@@ -75,7 +78,7 @@ public partial class CombatHandler : Node
         if (_hitbox != null)
         {
             SetAttackingStatus(true);
-            SetAttackingStatus(false);
+            //SetAttackingStatus(false);
         }
     }
     
@@ -104,9 +107,9 @@ public partial class CombatHandler : Node
     {
         foreach (HurtboxComponent hurtbox in detectedHurtboxes)
         {
-            GD.Print($"CombatHandler: detects it's own hurtbox: {hurtbox == _hurtbox}");
             if (hurtbox != _hurtbox)
             {
+                GD.Print($"{_debugName} Detected a Hurtbox");
                 hurtbox.AcceptPayload(BuildPayload());
             }
         }
@@ -129,6 +132,7 @@ public partial class CombatHandler : Node
         
         // Logic for sending status effects
         
+        GD.Print($"{_debugName}: Payload Accepted");
         PayloadHandled?.Invoke(payload);
     }
 

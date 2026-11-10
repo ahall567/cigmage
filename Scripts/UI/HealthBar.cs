@@ -9,17 +9,17 @@ public partial class HealthBar : ProgressBar
     // --- GODOT OVERRIDES ---
     public override void _Ready()
     {
-        EventBus.Instance.HealthValueChanged += OnHealthValueChanged;
+        EventBus.Instance.PlayerHealthValueChanged += OnPlayerHealthValueChanged;
 
         Value = 100;
     }
 
     public override void _ExitTree()
     {
-        EventBus.Instance.HealthValueChanged -= OnHealthValueChanged;
+        EventBus.Instance.PlayerHealthValueChanged -= OnPlayerHealthValueChanged;
     }
 
-    private void OnHealthValueChanged(float newValue, float maxValue)
+    private void OnPlayerHealthValueChanged(float newValue, float maxValue)
     {
         float newPercentage = (newValue / maxValue) * 100;
 

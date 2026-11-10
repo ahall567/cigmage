@@ -29,6 +29,11 @@ public partial class PlayerCombatController : Node3D
             _spell.SpellSpawned += OnSpellSpawned;
             InitChildren();
         }
+
+        if (_healthComponent != null)
+        {
+            _healthComponent.HealthChanged += OnHealthChanged;
+        }
     }
 
     public override void _ExitTree()
@@ -60,5 +65,11 @@ public partial class PlayerCombatController : Node3D
     private void OnSpellSpawned(Node spellNode, SpellDataResource spellData)
     {
         _manaComponent.Decrease(spellData.ManaCost);
+    }
+
+    private void OnHealthChanged(float newValue, float maxValue)
+    {
+        GD.Print($"PlayerCombatController: PlayerHealth: {newValue}");
+        EventBus.Instance.PublishPlayerHealthValueChanged(newValue, maxValue);
     }
 }

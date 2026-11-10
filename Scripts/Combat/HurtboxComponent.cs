@@ -16,7 +16,6 @@ public partial class HurtboxComponent : Area3D
 
     public void AcceptPayload(CombatPayload payload)
     {
-        GD.Print("Hurtbox: Payload Accepted");
         if (_isActive)PayloadAccepted?.Invoke(payload);
     }
 }

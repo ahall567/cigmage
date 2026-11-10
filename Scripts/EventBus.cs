@@ -12,7 +12,7 @@ public partial class EventBus : Node
     
     // --- PLAYER ---
     public event Action<float, float> ManaValueChanged;
-    public event Action<float, float> HealthValueChanged;
+    public event Action<float, float> PlayerHealthValueChanged;
     
     #endregion
     
@@ -24,8 +24,8 @@ public partial class EventBus : Node
     public void PublishManaValueChanged(float newValue, float maxValue)
         => ManaValueChanged?.Invoke(newValue, maxValue);
 
-    public void PublishHealthValueChanged(float newValue, float maxValue)
-        => HealthValueChanged?.Invoke(newValue, maxValue);
+    public void PublishPlayerHealthValueChanged(float newValue, float maxValue)
+        => PlayerHealthValueChanged?.Invoke(newValue, maxValue);
     
     // --- GODOT OVERRIDES ---
     public override void _Ready()

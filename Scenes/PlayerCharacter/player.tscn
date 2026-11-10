@@ -142,6 +142,7 @@ metadata/_custom_type_script = "uid://b2lc0n6luj72"
 
 [node name="CombatHandler" type="Node" parent="PlayerHead/Camera3D/PlayerCombatController" unique_id=978138111 node_paths=PackedStringArray("_hurtbox", "_health")]
 script = ExtResource("21_3nu1x")
+_debugName = "PlayerCombatHandler"
 _hurtbox = NodePath("../../../../HurtboxComponent")
 _health = NodePath("HealthComponent")
 metadata/_custom_type_script = "uid://bdl15hgmpvkub"
@@ -161,5 +162,6 @@ script = ExtResource("24_ij8nk")
 metadata/_custom_type_script = "uid://d0s8gukj1746v"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtboxComponent" unique_id=1447893352]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_e3o0i")
 debug_color = Color(0.6392157, 0, 0, 0.41960785)
