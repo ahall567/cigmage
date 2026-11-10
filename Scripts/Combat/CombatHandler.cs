@@ -78,7 +78,7 @@ public partial class CombatHandler : Node
         if (_hitbox != null)
         {
             SetAttackingStatus(true);
-            //SetAttackingStatus(false);
+            //SetAttackingStatus(false); // TODO: Figure out if/how this needs to be set to false at some point
         }
     }
     
@@ -105,6 +105,7 @@ public partial class CombatHandler : Node
     // --- EVENT HANDLERS ---
     private void OnHurtboxDetected(List<HurtboxComponent> detectedHurtboxes)
     {
+        // TODO: Create way to filter out hurtboxes so that Mobs don't damage other mobs
         foreach (HurtboxComponent hurtbox in detectedHurtboxes)
         {
             if (hurtbox != _hurtbox)
