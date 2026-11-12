@@ -33,6 +33,8 @@ _hitbox = NodePath("../Hitbox")
 metadata/_custom_type_script = "uid://bdl15hgmpvkub"
 
 [node name="Hitbox" type="Area3D" parent="." unique_id=1235754008]
+collision_layer = 8
+collision_mask = 64
 script = ExtResource("3_60ydo")
 metadata/_custom_type_script = "uid://cmcy30iuevh6v"
 

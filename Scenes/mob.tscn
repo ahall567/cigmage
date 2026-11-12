@@ -20,6 +20,8 @@ height = 2.0429688
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7rqy1"]
 
 [node name="Mob" type="CharacterBody3D" unique_id=69695702]
+collision_layer = 4
+collision_mask = 7
 script = ExtResource("1_ypr7k")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1493214985]
@@ -52,6 +54,8 @@ debug_enabled = true
 
 [node name="Hurtbox" type="Area3D" parent="." unique_id=1416389272]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.51066315)
+collision_layer = 64
+collision_mask = 0
 script = ExtResource("1_h5js2")
 metadata/_custom_type_script = "uid://d0s8gukj1746v"
 
@@ -61,6 +65,8 @@ shape = SubResource("CapsuleShape3D_h5js2")
 debug_color = Color(0.79815054, 0.34314454, 0.63764983, 0.42)
 
 [node name="HitboxComponent" type="Area3D" parent="." unique_id=777765025]
+collision_layer = 32
+collision_mask = 16
 script = ExtResource("5_frlhd")
 metadata/_custom_type_script = "uid://cmcy30iuevh6v"
 
