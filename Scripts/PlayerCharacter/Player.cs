@@ -14,7 +14,6 @@ public partial class Player : CharacterBody3D
 	public override void _Ready()
 	{
 		_head = this.GetChildByType<PlayerHead>();
-		
 	}
 
 	public override void _UnhandledInput(InputEvent @event)

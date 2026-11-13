@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://d1bn2korxth60"]
+
+[ext_resource type="Script" uid="uid://3la5hggmmlx6" path="res://Scripts/Consumables/Consumable.cs" id="1_0h8ti"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_2cn4s"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2cn4s"]
+size = Vector3(0.5459051, 0.63825226, 0.5780258)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2cn4s"]
+
+[node name="HealthConsumable" type="RigidBody3D" unique_id=677976375 node_paths=PackedStringArray("_pickupRange")]
+collision_layer = 0
+script = ExtResource("1_0h8ti")
+_pickupRange = NodePath("PickupRange")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1505792073]
+transform = Transform3D(0.255, 0, 0, 0, 0.255, 0, 0, 0, 0.255, 0, 0, 0)
+mesh = SubResource("BoxMesh_2cn4s")
+
+[node name="EnvironmentCollisionShape" type="CollisionShape3D" parent="." unique_id=1341463196]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.015173435, -0.031040192, -0.0049324036)
+shape = SubResource("BoxShape3D_2cn4s")
+
+[node name="PickupRange" type="Area3D" parent="." unique_id=504371427]
+collision_layer = 128
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupRange" unique_id=1493478931]
+shape = SubResource("SphereShape3D_2cn4s")

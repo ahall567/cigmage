@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b2qu2h2lvw1f3" path="res://Scenes/mob_spawn_controller.tscn" id="3_uy5l6"]
 [ext_resource type="PackedScene" uid="uid://br6su254b20v" path="res://Scenes/mob.tscn" id="4_lu27o"]
+[ext_resource type="PackedScene" uid="uid://d1bn2korxth60" path="res://Scenes/health_consumable.tscn" id="5_lu27o"]
 [ext_resource type="PackedScene" uid="uid://dg71jl6uuwxj6" path="res://Scenes/PlayerCharacter/player.tscn" id="5_wbqnv"]
 [ext_resource type="PackedScene" uid="uid://bo2qixpjdfybh" path="res://Scenes/PlayerCharacter/ui_manager.tscn" id="7_t1535"]
 
@@ -61,3 +62,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1120346, 1.5290785, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25900388, 11.645174)
 PlayerReference = NodePath("../Player")
 mobScene = ExtResource("4_lu27o")
+
+[node name="HealthConsumable" parent="." unique_id=677976375 instance=ExtResource("5_lu27o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, -5)

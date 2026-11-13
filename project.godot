@@ -78,13 +78,14 @@ toggle_pause={
 
 [layer_names]
 
-3d_physics/layer_1="environment"
-3d_physics/layer_2="player"
-3d_physics/layer_3="mobs"
+3d_physics/layer_1="Environment"
+3d_physics/layer_2="Player"
+3d_physics/layer_3="Mobs"
 3d_physics/layer_4="SpellHitBox"
 3d_physics/layer_5="PlayerHurtBox"
 3d_physics/layer_6="MobHitBox"
 3d_physics/layer_7="MobHurtBox"
+3d_physics/layer_8="ConsumablePickup"
 
 [physics]
 
