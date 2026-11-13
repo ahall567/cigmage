@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://dspbfqsl0l1u6" path="res://Scripts/Spells/Fireball/ProjectileEntity.cs" id="1_372f4"]
 [ext_resource type="Script" uid="uid://bdl15hgmpvkub" path="res://Scripts/Combat/CombatHandler.cs" id="2_wi2lr"]
 [ext_resource type="Script" uid="uid://cmcy30iuevh6v" path="res://Scripts/Combat/HitboxComponent.cs" id="3_60ydo"]
+[ext_resource type="Script" uid="uid://donpugt8g6fpr" path="res://Scripts/Combat/Effects/CombatEffect.cs" id="3_d7dsg"]
+[ext_resource type="Script" uid="uid://d2b6iq0cnnsil" path="res://Scripts/Combat/Effects/DamageEffect.cs" id="4_uyxev"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0mxqg"]
 
@@ -10,6 +12,11 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0mxqg"]
 radius = 0.31341848
+
+[sub_resource type="Resource" id="Resource_nkhao"]
+script = ExtResource("4_uyxev")
+Amount = 5.0
+metadata/_custom_type_script = "uid://d2b6iq0cnnsil"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_toovh"]
 
@@ -29,7 +36,9 @@ shape = SubResource("SphereShape3D_0mxqg")
 
 [node name="CombatHandler" type="Node" parent="." unique_id=635863117 node_paths=PackedStringArray("_hitbox")]
 script = ExtResource("2_wi2lr")
+_debugName = "FireballProjectile"
 _hitbox = NodePath("../Hitbox")
+_attackEffects = Array[ExtResource("3_d7dsg")]([SubResource("Resource_nkhao")])
 metadata/_custom_type_script = "uid://bdl15hgmpvkub"
 
 [node name="Hitbox" type="Area3D" parent="." unique_id=1235754008]

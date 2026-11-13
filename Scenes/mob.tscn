@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://d0s8gukj1746v" path="res://Scripts/Combat/HurtboxComponent.cs" id="1_h5js2"]
 [ext_resource type="Script" uid="uid://8q6b8nro0rqc" path="res://Scripts/Mobs/MobController.cs" id="1_ypr7k"]
 [ext_resource type="Script" uid="uid://cx7f3msraa047" path="res://Scripts/Combat/HealthComponent.cs" id="2_u8nqw"]
+[ext_resource type="Script" uid="uid://donpugt8g6fpr" path="res://Scripts/Combat/Effects/CombatEffect.cs" id="3_o80aq"]
+[ext_resource type="Script" uid="uid://d2b6iq0cnnsil" path="res://Scripts/Combat/Effects/DamageEffect.cs" id="4_3eh6w"]
 [ext_resource type="Script" uid="uid://cmcy30iuevh6v" path="res://Scripts/Combat/HitboxComponent.cs" id="5_frlhd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_04bb1"]
@@ -12,6 +14,11 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u8nqw"]
 albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_gcfvf"]
+script = ExtResource("4_3eh6w")
+Amount = 1.0
+metadata/_custom_type_script = "uid://d2b6iq0cnnsil"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h5js2"]
 radius = 0.53027344
@@ -23,6 +30,7 @@ height = 2.0429688
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_ypr7k")
+_movementSpeed = 5.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1493214985]
 shape = SubResource("CapsuleShape3D_04bb1")
@@ -41,6 +49,7 @@ _debugName = "MobCombatHandler"
 _hitbox = NodePath("../HitboxComponent")
 _hurtbox = NodePath("../Hurtbox")
 _health = NodePath("HealthComponent")
+_attackEffects = Array[ExtResource("3_o80aq")]([SubResource("Resource_gcfvf")])
 metadata/_custom_type_script = "uid://bdl15hgmpvkub"
 
 [node name="HealthComponent" type="Node" parent="CombatHandler" unique_id=1693394613]

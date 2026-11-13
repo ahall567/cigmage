@@ -1,10 +1,11 @@
 using Godot;
+using System.Collections.Generic;
+using CigMage.Combat.Effects;
 
 namespace CigMage.Combat;
 
-public readonly record struct CombatPayload(
-    float DamageAmount,
-    float KnockbackAmount,
-    Vector3 SourcePosition
-    // Add spell effect once these are created
-);
+public sealed class CombatPayload
+{
+    public Vector3 SourcePosition { get; init; }
+    public IReadOnlyList<CombatEffect> Effects { get; init; } = [];
+}

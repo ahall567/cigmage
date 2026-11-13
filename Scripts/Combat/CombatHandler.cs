@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using CigMage.Combat.Effects;
 
 namespace CigMage.Combat;
 
@@ -8,19 +9,22 @@ namespace CigMage.Combat;
 public partial class CombatHandler : Node
 {
     // --- TEST ---
-    [Export] private String _debugName;
+    [Export] private string? _debugName;
     
     // --- COMPONENTS ---
-    [Export] private HitboxComponent _hitbox;
-    [Export] private HurtboxComponent _hurtbox;
-    [Export] private HealthComponent _health;
+    [Export] private HitboxComponent? _hitbox;
+    [Export] private HurtboxComponent? _hurtbox;
+    [Export] private HealthComponent? _health;
+    
+    // --- DATA ---
+    [Export] private Godot.Collections.Array<CombatEffect> _attackEffects = new();
     
     // --- EVENTS ---
-    public event Action<float> DamageTaken;
-    public event Action<float> KnockbackTaken;
-    public event Action<CombatPayload> PayloadHandled;
+    public event Action<float>? DamageTaken;
+    public event Action<float>? KnockbackTaken;
+    public event Action<CombatPayload>? PayloadHandled;
     // TODO: Put this in global event bus
-    public event Action HealthZero;
+    public event Action? HealthZero;
     
     // --- STATUS ---
     private bool _isAttacking;
@@ -81,6 +85,25 @@ public partial class CombatHandler : Node
             //SetAttackingStatus(false); // TODO: Figure out if/how this needs to be set to false at some point
         }
     }
+
+    public void ApplyDamage(float amount)
+    {
+        if (amount <= 0) return;
+        DamageTaken?.Invoke(amount);
+        _health?.Decrease(amount);
+    }
+
+    public void ApplyKnockback(float force, Vector3 sourcePosition)
+    {
+        if (force <= 0) return;
+        KnockbackTaken?.Invoke(force);
+    }
+
+    public void ApplyHeal(float amount)
+    {
+        if (amount <= 0) return;
+        _health?.Increase(amount);
+    }
     
     // --- INTERNAL LOGIC ---
     private void SubscribeToEvents()
@@ -99,7 +122,11 @@ public partial class CombatHandler : Node
 
     private CombatPayload BuildPayload()
     {
-        return new CombatPayload(5, 5, Vector3.Zero);
+        return new CombatPayload
+        {
+            SourcePosition = GetParent<Node3D>().GlobalPosition,
+            Effects = _attackEffects
+        };
     }
     
     // --- EVENT HANDLERS ---
@@ -118,20 +145,11 @@ public partial class CombatHandler : Node
 
     private void OnPayloadAccepted(CombatPayload payload)
     {
-        if (payload.DamageAmount > 0)
+        var ctx = new CombatContext(payload.SourcePosition, null);
+        foreach (var effect in payload.Effects)
         {
-            DamageTaken?.Invoke(payload.DamageAmount);
-            GD.Print($"CombatHandler - Damage Taken: {payload.DamageAmount}");
-            
-            _health.Decrease(payload.DamageAmount);
+            effect.Apply(this, ctx);
         }
-
-        if (payload.KnockbackAmount > 0)
-        {
-            KnockbackTaken?.Invoke(payload.KnockbackAmount);
-        }
-        
-        // Logic for sending status effects
         
         GD.Print($"{_debugName}: Payload Accepted");
         PayloadHandled?.Invoke(payload);
