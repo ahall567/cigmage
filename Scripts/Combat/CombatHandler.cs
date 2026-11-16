@@ -81,12 +81,12 @@ public partial class CombatHandler : Node
     {
         if (_hitbox != null)
         {
-            GD.Print($"{_debugName}: ImpulseAttack called");
             SetAttackingStatus(true);
             //SetAttackingStatus(false); // TODO: Figure out if/how this needs to be set to false at some point
         }
     }
 
+    // Combat Effect Processes
     public void ApplyDamage(float amount)
     {
         if (amount <= 0) return;

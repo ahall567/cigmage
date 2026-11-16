@@ -6,7 +6,12 @@
 [ext_resource type="Script" uid="uid://donpugt8g6fpr" path="res://Scripts/Combat/Effects/CombatEffect.cs" id="4_5yhsn"]
 [ext_resource type="Script" uid="uid://4fxtvb2n0pal" path="res://Scripts/Combat/Effects/HealEffect.cs" id="5_glkyk"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m34ls"]
+albedo_color = Color(0.94509804, 0.69411767, 0.105882354, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_2cn4s"]
+material = SubResource("StandardMaterial3D_m34ls")
+size = Vector3(0.685, 1, 0.11)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2cn4s"]
 size = Vector3(0.5459051, 0.63825226, 0.5780258)
@@ -25,7 +30,7 @@ _pickupRange = NodePath("PickupHitBox")
 _combatHandler = NodePath("CombatHandler")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1505792073]
-transform = Transform3D(0.255, 0, 0, 0, 0.255, 0, 0, 0, 0.255, 0, 0, 0)
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 mesh = SubResource("BoxMesh_2cn4s")
 
 [node name="EnvironmentCollisionShape" type="CollisionShape3D" parent="." unique_id=1341463196]
