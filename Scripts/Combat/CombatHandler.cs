@@ -81,6 +81,7 @@ public partial class CombatHandler : Node
     {
         if (_hitbox != null)
         {
+            GD.Print($"{_debugName}: ImpulseAttack called");
             SetAttackingStatus(true);
             //SetAttackingStatus(false); // TODO: Figure out if/how this needs to be set to false at some point
         }
@@ -101,6 +102,7 @@ public partial class CombatHandler : Node
 
     public void ApplyHeal(float amount)
     {
+        GD.Print($"{Name}: ApplyHeal Called");
         if (amount <= 0) return;
         _health?.Increase(amount);
     }
