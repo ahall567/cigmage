@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://d1bn2korxth60"]
 
 [ext_resource type="Script" uid="uid://3la5hggmmlx6" path="res://Scripts/Consumables/Consumable.cs" id="1_0h8ti"]
+[ext_resource type="Script" uid="uid://cmcy30iuevh6v" path="res://Scripts/Combat/HitboxComponent.cs" id="2_m34ls"]
+[ext_resource type="Script" uid="uid://bdl15hgmpvkub" path="res://Scripts/Combat/CombatHandler.cs" id="3_m31e0"]
+[ext_resource type="Script" uid="uid://donpugt8g6fpr" path="res://Scripts/Combat/Effects/CombatEffect.cs" id="4_5yhsn"]
+[ext_resource type="Script" uid="uid://4fxtvb2n0pal" path="res://Scripts/Combat/Effects/HealEffect.cs" id="5_glkyk"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_2cn4s"]
 
@@ -9,10 +13,16 @@ size = Vector3(0.5459051, 0.63825226, 0.5780258)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2cn4s"]
 
-[node name="HealthConsumable" type="RigidBody3D" unique_id=677976375 node_paths=PackedStringArray("_pickupRange")]
-collision_layer = 0
+[sub_resource type="Resource" id="Resource_vqful"]
+script = ExtResource("5_glkyk")
+Amount = 5.0
+metadata/_custom_type_script = "uid://4fxtvb2n0pal"
+
+[node name="HealthConsumable" type="RigidBody3D" unique_id=677976375 node_paths=PackedStringArray("_pickupRange", "_combatHandler")]
+collision_layer = 128
 script = ExtResource("1_0h8ti")
-_pickupRange = NodePath("PickupRange")
+_pickupRange = NodePath("PickupHitBox")
+_combatHandler = NodePath("CombatHandler")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1505792073]
 transform = Transform3D(0.255, 0, 0, 0, 0.255, 0, 0, 0, 0.255, 0, 0, 0)
@@ -22,9 +32,18 @@ mesh = SubResource("BoxMesh_2cn4s")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.015173435, -0.031040192, -0.0049324036)
 shape = SubResource("BoxShape3D_2cn4s")
 
-[node name="PickupRange" type="Area3D" parent="." unique_id=504371427]
+[node name="PickupHitBox" type="Area3D" parent="." unique_id=1100563326]
 collision_layer = 128
-collision_mask = 2
+collision_mask = 18
+script = ExtResource("2_m34ls")
+metadata/_custom_type_script = "uid://cmcy30iuevh6v"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupRange" unique_id=1493478931]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupHitBox" unique_id=1493478931]
 shape = SubResource("SphereShape3D_2cn4s")
+
+[node name="CombatHandler" type="Node" parent="." unique_id=2097311072 node_paths=PackedStringArray("_hitbox")]
+script = ExtResource("3_m31e0")
+_debugName = "Consumable"
+_hitbox = NodePath("../PickupHitBox")
+_attackEffects = Array[ExtResource("4_5yhsn")]([SubResource("Resource_vqful")])
+metadata/_custom_type_script = "uid://bdl15hgmpvkub"

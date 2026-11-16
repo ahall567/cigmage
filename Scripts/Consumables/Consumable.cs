@@ -1,3 +1,4 @@
+using CigMage.Combat;
 using Godot;
 using CigMage.PlayerCharacter;
 
@@ -6,6 +7,7 @@ namespace CigMage.Consumables;
 public partial class Consumable : RigidBody3D
 {
 	[Export] private Area3D _pickupRange;
+	[Export] private CombatHandler _combatHandler;
 
 	// --- GODOT OVERRIDES ---
 	public override void _Ready()
@@ -23,6 +25,7 @@ public partial class Consumable : RigidBody3D
 	{
 		if (body is Player player)
 		{
+			_combatHandler.ImpulseAttack();
 			QueueFree();
 		}
 	}
