@@ -1,4 +1,5 @@
 using Godot;
+using System;
 using CigMage.Extensions;
 using CigMage.Combat;
 using CigMage.PlayerCharacter;
@@ -15,6 +16,9 @@ public partial class MobController : CharacterBody3D
     
     private CombatHandler _combatHandler;
     private NavigationAgent3D _navAgent;
+    
+    // --- EVENTS ---
+    public event Action<MobController> MobDied;
     
     // --- GODOT OVERRIDES ---
     public override void _Ready()
@@ -78,7 +82,7 @@ public partial class MobController : CharacterBody3D
     public void Init(Player player)
     {
         _player = player;
-        _movementSpeed = 3;
+        _movementSpeed = 3; // TODO: Un-Magic number this
     }
 
     // --- INTERNAL LOGIC ---
@@ -101,6 +105,7 @@ public partial class MobController : CharacterBody3D
     
     private void OnHealthZero()
     {
+        MobDied.Invoke(this);
         QueueFree();
     }
 }

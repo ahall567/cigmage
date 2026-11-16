@@ -132,12 +132,10 @@ public partial class CombatHandler : Node
     // --- EVENT HANDLERS ---
     private void OnHurtboxDetected(List<HurtboxComponent> detectedHurtboxes)
     {
-        // TODO: Create way to filter out hurtboxes so that Mobs don't damage other mobs
         foreach (HurtboxComponent hurtbox in detectedHurtboxes)
         {
             if (hurtbox != _hurtbox)
             {
-                GD.Print($"{_debugName} Detected a Hurtbox");
                 hurtbox.AcceptPayload(BuildPayload());
             }
         }
@@ -149,9 +147,9 @@ public partial class CombatHandler : Node
         foreach (var effect in payload.Effects)
         {
             effect.Apply(this, ctx);
+            GD.Print($"{_debugName} is accepting an effect: {effect.GetType()}");
         }
         
-        GD.Print($"{_debugName}: Payload Accepted");
         PayloadHandled?.Invoke(payload);
     }
 

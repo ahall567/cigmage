@@ -62,13 +62,13 @@ transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
 text = "CigState"
 
 [node name="SpellBase" type="Node3D" parent="PlayerHead/Camera3D/PlayerCombatController" unique_id=617709902 node_paths=PackedStringArray("_combatController")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 1.5, 0, -2)
+transform = Transform3D(-0.9578225, 0, -0.2873605, 0, 1, 0, 0.2873605, 0, -0.9578225, 1.5, 0, -2)
 script = ExtResource("4_pd7d3")
 _combatController = NodePath("..")
 _spellData = ExtResource("5_dvowb")
 
 [node name="SpellStateLabel" type="Label3D" parent="PlayerHead/Camera3D/PlayerCombatController/SpellBase" unique_id=899481416]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+transform = Transform3D(-0.93988943, 0, 0.34147877, 0, 1, 0, -0.34147877, 0, -0.93988943, 0, 0, 0)
 text = "SpellState"
 
 [node name="PlayerCombatStateMachine" type="Node" parent="PlayerHead/Camera3D/PlayerCombatController" unique_id=988712418 node_paths=PackedStringArray("Parent")]

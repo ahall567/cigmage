@@ -9,6 +9,7 @@ public partial class MobSpawnController : Node3D
 {
 	[Export] public Player PlayerReference;
 	[Export] public PackedScene mobScene;
+	[Export] public PackedScene consumableScene;
 
 	private Timer _spawnCooldown;
 
@@ -41,13 +42,29 @@ public partial class MobSpawnController : Node3D
 		if (mobNode is MobController mobController)
 		{
 			mobController.Init(PlayerReference);
+			mobController.MobDied += OnMobDied;
 		}
 		
 		GetTree().CurrentScene.AddChild(mobNode);
 	}
 
+	// --- EVENT HANDLERS ---
 	private void OnCooldownExpired()
 	{
 		SpawnMob(GlobalTransform);
+	}
+
+	private void OnMobDied(MobController mobController)
+	{
+		Node consumableNode = consumableScene.Instantiate();
+
+		if (consumableNode is Node3D node3D)
+		{
+			node3D.GlobalTransform = mobController.GlobalTransform;
+		}
+		
+		GetTree().CurrentScene.AddChild(consumableNode);
+
+		mobController.MobDied -= OnMobDied;
 	}
 }
