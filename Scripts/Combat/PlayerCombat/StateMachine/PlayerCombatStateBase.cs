@@ -2,8 +2,8 @@ using Godot;
 using CigMage.Extensions;
 using CigMage.PlayerCharacter.Cig;
 using CigMage.StateMachine;
+using CigMage.Spells;
 using CigMage.Spells.SpellStateMachine;
-
 namespace CigMage.Combat.PlayerCombat.StateMachine;
 
 public abstract partial class PlayerCombatStateBase : State<PlayerCombatState>
@@ -13,6 +13,7 @@ public abstract partial class PlayerCombatStateBase : State<PlayerCombatState>
     protected PlayerCombatController PlayerCombatControllerParent => Parent as PlayerCombatController;
     
     protected SpellStateMachine SpellStateMachine;
+    protected SpellBase Spell => SpellStateMachine.Parent as SpellBase;
     
     protected CigStateMachine CigStateMachine;
     protected CigBase Cig => CigStateMachine.Parent as CigBase;
