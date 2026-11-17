@@ -56,6 +56,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -2)
 script = ExtResource("3_hfuwt")
 _playerCombatController = NodePath("..")
 _refillRate = 10.0
+_totalLifetime = 50.0
 
 [node name="CigStateLabel" type="Label3D" parent="PlayerHead/Camera3D/PlayerCombatController/CigBase" unique_id=1063308648]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
@@ -84,7 +85,6 @@ metadata/_custom_type_script = "uid://bhpfc4pbvd41r"
 
 [node name="PlayerCombatStateDrag" type="Node" parent="PlayerHead/Camera3D/PlayerCombatController/PlayerCombatStateMachine" unique_id=910520187 node_paths=PackedStringArray("StateLabel", "Parent")]
 script = ExtResource("8_lmiun")
-_refillRate = 20.0
 StateLabel = NodePath("../../CombatStateLabel")
 Parent = NodePath("../..")
 metadata/_custom_type_script = "uid://cxgpsmcidwjct"

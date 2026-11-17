@@ -84,10 +84,11 @@ public partial class StateMachine<T> : Node where T: Enum
             return;
         }
 
+        if (!newState.CanEnter) return;
         if (!_currentState.CanExit) return;
         _currentState.Exit();
-        newState.Enter();
         _currentState = newState;
+        newState.Enter();
     }
 
     /// <summary>

@@ -8,13 +8,17 @@ public partial class PlayerCombatStateDrag : PlayerCombatStateBase
 {
     public override PlayerCombatState StateKey => PlayerCombatState.Drag;
 
-    [Export] private float _refillRate;
-
+    public override bool CanEnter => Cig is { IsEmpty: false };
+    
     // --- STATE METHODS ---
     public override void Enter()
     {
         base.Enter();
-
+        
+        // Unsubscribe firs to prevent duplicate subscriptions
+        CigStateMachine.WindupCompleted -= OnWindupCompleted;
+        CigStateMachine.ExhaleCompleted -= OnExhaleCompleted;
+        
         CigStateMachine.WindupCompleted += OnWindupCompleted;
         CigStateMachine.ExhaleCompleted += OnExhaleCompleted;
         
@@ -32,6 +36,8 @@ public partial class PlayerCombatStateDrag : PlayerCombatStateBase
 
     public override void Exit()
     {
+        CigStateMachine.WindupCompleted -= OnWindupCompleted;
+        
         CigStateMachine.ChangeState(CigState.Exhale);
     }
     

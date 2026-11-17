@@ -11,8 +11,11 @@ public abstract partial class PlayerCombatStateBase : State<PlayerCombatState>
     [Export] protected Label3D StateLabel;
     
     protected PlayerCombatController PlayerCombatControllerParent => Parent as PlayerCombatController;
+    
     protected SpellStateMachine SpellStateMachine;
+    
     protected CigStateMachine CigStateMachine;
+    protected CigBase Cig => CigStateMachine.Parent as CigBase;
 
     public override void _Ready()
     {

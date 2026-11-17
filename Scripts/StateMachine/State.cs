@@ -23,6 +23,7 @@ public abstract partial class State<T> : Node where T: Enum
     /// </summary>
     public abstract T StateKey { get; }
 
+    public virtual bool CanEnter => true;
     [Export] public bool CanExit = true;
     
     /// <summary>Called once during <see cref="StateMachine{T}._Ready"/> for one-time setup logic.</summary>
