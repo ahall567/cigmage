@@ -5,5 +5,6 @@ public enum PlayerCombatState
     Idle,
     Cast,
     Drag,
-    Cough
+    Cough,
+    Light
 }

@@ -1,4 +1,5 @@
 using Godot;
+using System;
 using CigMage.Extensions;
 using CigMage.Combat.PlayerCombat;
 
@@ -8,27 +9,48 @@ public partial class CigBase : Node3D
 {
     [Export] private PlayerCombatController _playerCombatController;
     [Export] private float _refillRate;
-    [Export] private float _totalLifetime;
+    [Export] private float _maxLifetime;
 
     public Label3D StateLabel;
 
-    private bool _isEmpty;
-    public bool IsEmpty => _isEmpty;
+    public event Action Emptied;
+
+    private float _currentLifetime;
+    public float CurrentLifetime
+    {
+        get => _currentLifetime;
+        private set
+        {
+            float clampedValue = Mathf.Clamp(value, 0, _maxLifetime);
+            if (Mathf.IsEqualApprox(_currentLifetime, clampedValue)) return;
+
+            bool wasEmpty = IsEmpty;
+            _currentLifetime = clampedValue;
+
+            if (!wasEmpty && IsEmpty)
+            {
+                GD.Print("Cigarette is empty.");
+                Emptied?.Invoke();
+            }
+        }
+    }
+
+    public bool IsEmpty => CurrentLifetime <= 0;
     
     // --- PUBLIC API ---
     public void RegenMana(double delta)
     {
-        if (_isEmpty) return;
-        
-        float manaToAdd = _refillRate * (float)delta;
+        if (IsEmpty) return;
+
+        float manaToAdd = Mathf.Min(_refillRate * (float)delta, _currentLifetime);
         _playerCombatController.ManaComponent.Increase(manaToAdd);
-        _totalLifetime -= manaToAdd;
-        GD.Print($"Cig amount: {_totalLifetime}");
-        if (_totalLifetime <= 0)
-        {
-            GD.Print("Cigarette is empty.");
-            _isEmpty = true;
-        }
+        CurrentLifetime -= manaToAdd;
+        GD.Print($"Cig amount: {CurrentLifetime}");
+    }
+
+    public void Relight()
+    {
+        CurrentLifetime = _maxLifetime;
     }
 
     // --- GODOT OVERRIDES ---
@@ -36,5 +58,9 @@ public partial class CigBase : Node3D
     {
         StateLabel = this.GetChildByType<Label3D>();
     }
-    
+
+    public override void _Ready()
+    {
+        _currentLifetime = _maxLifetime;
+    }
 }

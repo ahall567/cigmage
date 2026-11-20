@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bf5jqhjmnyeey" path="res://Scripts/PlayerCharacter/Cig/CigBase.cs" id="3_hfuwt"]
 [ext_resource type="Script" uid="uid://b51qyd0lwgha4" path="res://Scripts/Spells/SpellBase.cs" id="4_pd7d3"]
 [ext_resource type="Resource" uid="uid://dy16w7g8yi02q" path="res://Scripts/Spells/Fireball/fireball_data.tres" id="5_dvowb"]
+[ext_resource type="Script" uid="uid://unhioym4hmo4" path="res://Scripts/PlayerCharacter/Cig/CigInventory.cs" id="5_pd7d3"]
 [ext_resource type="Script" uid="uid://bumk1xf16apsp" path="res://Scripts/Combat/PlayerCombat/StateMachine/PlayerCombatStateMachine.cs" id="6_ey6oa"]
 [ext_resource type="Script" uid="uid://bhpfc4pbvd41r" path="res://Scripts/Combat/PlayerCombat/StateMachine/PlayerCombatStateIdle.cs" id="7_7s8nq"]
 [ext_resource type="Script" uid="uid://cxgpsmcidwjct" path="res://Scripts/Combat/PlayerCombat/StateMachine/PlayerCombatStateDrag.cs" id="8_lmiun"]
@@ -56,11 +57,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -2)
 script = ExtResource("3_hfuwt")
 _playerCombatController = NodePath("..")
 _refillRate = 10.0
-_totalLifetime = 50.0
+_maxLifetime = 50.0
 
 [node name="CigStateLabel" type="Label3D" parent="PlayerHead/Camera3D/PlayerCombatController/CigBase" unique_id=1063308648]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
 text = "CigState"
+
+[node name="CigInventory" type="Node" parent="PlayerHead/Camera3D/PlayerCombatController/CigBase" unique_id=1537882206]
+script = ExtResource("5_pd7d3")
 
 [node name="SpellBase" type="Node3D" parent="PlayerHead/Camera3D/PlayerCombatController" unique_id=617709902 node_paths=PackedStringArray("_combatController")]
 transform = Transform3D(-0.9578225, 0, -0.2873605, 0, 1, 0, 0.2873605, 0, -0.9578225, 1.5, 0, -2)
